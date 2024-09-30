@@ -6,3 +6,8 @@ Description: Wordpress theme template
 Version: 0.0.1
 License: MIT
 */
+
+body {
+    color: rgb(232, 218, 218);
+    background-color: rgb(69, 63, 63);
+}
