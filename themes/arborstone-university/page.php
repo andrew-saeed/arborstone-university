@@ -1,7 +1,7 @@
 <? get_header(); ?>
 
 <? while( have_posts() ): the_post(); ?>
-    <h2><? the_title(); ?></h2>
+    <h1><? the_title(); ?></h1>
     <? the_content(); ?>
 <? endwhile; ?>
 

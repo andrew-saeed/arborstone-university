@@ -6,4 +6,16 @@
     <? endif; ?>
     <? wp_head(); ?>
 </head>
-<body>
+<body class="font-inter">
+    <header>
+        <h1 class="text-4xl font-bold capitalize"><a href="<? echo site_url(); ?>">arborstone university</a></h1>
+        <nav>
+            <ul>
+                <li class="text-2xl capitalize"><a href="<? echo site_url('/about-us'); ?>">about us</a></li>
+                <li class="text-2xl capitalize"><a href="<? echo site_url('/programs'); ?>">programs</a></li>
+                <li class="text-2xl capitalize"><a href="<? echo site_url('/events'); ?>">events</a></li>
+                <li class="text-2xl capitalize"><a href="<? echo site_url('/campuses'); ?>">campuses</a></li>
+                <li class="text-2xl capitalize"><a href="<? echo site_url('/blog'); ?>">blog</a></li>
+            </ul>
+        </nav>
+    </header>
