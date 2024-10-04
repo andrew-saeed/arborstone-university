@@ -16,7 +16,27 @@
             </nav>
         <? endif; ?>
     </header>
-    <? the_content(); ?>
+    
+    <main>
+        <?  $hasChildren = get_pages(array('child_of' => get_the_ID())); 
+            if($hasChildren or $pageParent):
+        ?>
+            <nav aria-label="side-nav">
+                <ul>
+                    <?  if($pageParent) {
+                            $currentParent = $pageParent;    
+                        } else {
+                            $currentParent = get_the_ID();
+                        }
+                        wp_list_pages(array('title_li'=> NULL, 'child_of'=> $currentParent));
+                    ?>
+                </ul>
+            </nav>
+        <? endif; ?>
+        <div id="main-content">
+            <? the_content(); ?>
+        </div>
+    </main>
 <? endwhile; ?>
 
 <? get_footer(); ?>
