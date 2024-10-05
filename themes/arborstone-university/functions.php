@@ -26,7 +26,6 @@ function theme_files() {
         $style = get_theme_file_uri('/dist/' . $manifest['src/style.scss']['file']);
     }
 
-    wp_enqueue_style('font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/fontawesome.min.css');
     wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
     wp_enqueue_style('theme_main_style', $style);
 }

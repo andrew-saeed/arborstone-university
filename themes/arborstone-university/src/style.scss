@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Colors */
+:root {
+  scroll-behavior: smooth;
+
+  --white-light: #FEFAE0;
+  --white-dark: #eae6cf;
+  --black-light: #475f2b;
+  --black-dark: #283618;
+  --black-dim: rgb(40, 54, 24, 0.8);
+  --green: #49C055;
+  --red: #ff5e32;
+  --yellow: #FFC801;
+  --blue-light: #38bdf8;
+  --blue-dark: #5748AE;
+  --blue-dim: rgba(87, 72, 174, 0.8);
+  --gray-light: #bcbcbf;
+  --gray-dark: #9ca3af;
+
+  --dark-white-light: #011222;
+  --dark-white-light-dim: rgba(1, 18, 34, 0.9);
+  --dark-white-dark: #94a3b8;
+  --dark-black-dark: #1e293b;
+}
+
+/* Fonts */
 .font-inter {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -9,6 +34,63 @@
   font-style: normal;
 }
 
-body {
-  background: rgb(32, 142, 244);
+/* Mixins */
+@mixin withRtl($property, $ltr-value, $rtl-value) {
+  html[dir=ltr] & {
+    #{$property}: $ltr-value !important;
+  }
+
+  html[dir=rtl] & {
+    #{$property}: $rtl-value !important;
+  }
+}
+
+/* LTR-RTL padding */
+.right-left-padding-1 {
+  @include withRtl(padding, 0 1rem 0 0, 0 0 0 1rem);
+}
+.left-right-padding-1 {
+  @include withRtl(padding, 0 0 0 1rem, 0 1rem 0 0);
+}
+.md-left-right-padding-1 {
+  @media screen and (min-width:768px) {
+    @include withRtl(padding, 0 0 0 1rem, 0 1rem 0 0);
+  }
+}
+
+/* LTR-RTL margin */
+.right-left-margin-1 {
+  @include withRtl(margin, 0 1rem 0 0, 0 0 0 1rem);
+}
+.left-right-margin-1 {
+  @include withRtl(margin, 0 0 0 1rem, 0 1rem 0 0);
+}
+
+/* Theme */
+@layer base {
+  body {
+    background: rgb(32, 142, 244);
+  }
+}
+
+@layer components {
+  nav {
+    .logo_a {
+      font-size: clamp(1.375rem, 9.032vw + -0.431rem, 2.25rem);
+      line-height: clamp(2.063rem, 8.903vw + 0.282rem, 2.925rem);
+    }
+    .links-list_li_a {
+      @apply w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark;
+  
+      &.current-link {
+        border: var(--white-light) 0.1rem solid;
+  
+        @media screen and (min-width:992px){
+          border-top: unset;
+          border-left: unset;
+          border-right: unset;
+        }
+      }
+    }
+  }
 }
