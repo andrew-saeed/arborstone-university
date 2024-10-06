@@ -1,3 +1,5 @@
-import testFunc1 from "./test"
+import loadNavMenu from "./nav-menu"
 
-testFunc1()
+window.onload = () => {
+    loadNavMenu()
+}
