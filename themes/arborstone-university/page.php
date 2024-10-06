@@ -12,35 +12,36 @@
         </div>
     </section>
     
-    <main class="relative">
+    <main>
+        <div id="main-box" class="relative max-w-screen-lg mx-auto px-2">
+            <? if($pageParent): ?>
+                <nav class="absolute top-0 left-0 translate-x-2 -translate-y-1/2" aria-label="breadcrumb">
+                    <ul class="bg-white-dark flex items-center text-sm-1 border border-white-dark rounded-md shadow-base">
+                        <li><a class="inline-block bg-black-dark text-white-light px-4 py-3 rounded-l-md rounded-bl-md hover:bg-black-light" href="<? echo get_permalink($pageParent); ?>">Back to <? echo get_the_title($pageParent); ?></a></li>
+                        <li aria-current="page"><span class="inline-block text-black-dark px-4 py-3 rounded-r-md rounded-br-md"><? the_title(); ?></span></li>
+                    </ul>
+                </nav>
+            <? endif; ?>
+            
+            <?  $hasChildren = get_pages(array('child_of' => get_the_ID())); 
+                if($hasChildren or $pageParent):
+            ?>
+                <nav class="inline-block float-right" aria-label="side-nav">
+                    <ul>
+                        <?  if($pageParent) {
+                                $currentParent = $pageParent;    
+                            } else {
+                                $currentParent = get_the_ID();
+                            }
+                            wp_list_pages(array('title_li'=> NULL, 'child_of'=> $currentParent));
+                        ?>
+                    </ul>
+                </nav>
+            <? endif; ?>
 
-        <? if($pageParent): ?>
-            <nav class="absolute top-0" aria-label="breadcrumb">
-                <ul class="flex gap-4">
-                    <li><a href="<? echo get_permalink($pageParent); ?>"><? echo get_the_title($pageParent); ?></a></li>
-                    <li aria-current="page"><? the_title(); ?></li>
-                </ul>
-            </nav>
-        <? endif; ?>
-        
-        <?  $hasChildren = get_pages(array('child_of' => get_the_ID())); 
-            if($hasChildren or $pageParent):
-        ?>
-            <nav aria-label="side-nav">
-                <ul>
-                    <?  if($pageParent) {
-                            $currentParent = $pageParent;    
-                        } else {
-                            $currentParent = get_the_ID();
-                        }
-                        wp_list_pages(array('title_li'=> NULL, 'child_of'=> $currentParent));
-                    ?>
-                </ul>
-            </nav>
-        <? endif; ?>
-
-        <div id="main-content" class="space-y-7 [&_p]:text-base-1 [&_p]:leading-base-1">
-            <? the_content(); ?>
+            <div id="main-content" class="py-14 space-y-7 [&_p]:text-base-1 [&_p]:leading-base-1">
+                <? the_content(); ?>
+            </div>
         </div>
     </main>
 <? endwhile; ?>

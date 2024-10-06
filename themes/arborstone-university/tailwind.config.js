@@ -62,7 +62,7 @@ export default {
 				'xxlarge': '5.625rem' //90px
 			},
 			boxShadow: {
-				'base': '0px 0px 15px -5px var(--black-light)'
+				'base': '2px 2px 1px rgba(0, 0, 0, 0.07)'
 			}
     }
   },
