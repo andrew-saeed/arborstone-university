@@ -1,4 +1,5 @@
 const loadNavMenu = () => {
+    const mask = document.querySelector('#mask')
     const linksList = document.querySelector('#links-list')
         linksList.style.maxHeight = '0px'
     const linksListItems = linksList.querySelectorAll('li a')
@@ -19,6 +20,9 @@ const loadNavMenu = () => {
                 item.style.transform = 'translateX(0px)'
                 item.style.opacity = `1`
             })
+            mask.style.opacity = '1'
+            mask.style.visibility = 'visible'
+            document.body.style.overflowY = 'hidden'
         } else {
             linksList.style.transitionDelay = `0.4s`
             linksList.style.maxHeight = '0px'
@@ -26,6 +30,8 @@ const loadNavMenu = () => {
                 item.style.transform = 'translateX(-150px)'
                 item.style.opacity = `0`
             })
+            mask.style.opacity = '0'
+            document.body.style.overflowY = 'scroll'
         }
     }
     trigger.addEventListener('keydown', (event) => {
