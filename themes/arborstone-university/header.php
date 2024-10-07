@@ -10,7 +10,7 @@
 </head>
 <body <? body_class('bg-white-light font-inter'); ?>>
 <header>
-    <nav class="absolute top-0 left-0 z-50 w-full">
+    <nav id="main-nav" class="absolute top-0 left-0 z-50 w-full">
         <div id="nav-layout"
             class="max-w-screen-xlg grid grid-cols-[max-content_1fr_max-content] items-center justify-items-center
             text-white-light font-bold capitalize
