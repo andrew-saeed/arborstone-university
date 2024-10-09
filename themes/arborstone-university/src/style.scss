@@ -24,6 +24,14 @@
   --dark-black-dark: #1e293b;
 }
 
+/* Mobile global font size */
+@media screen and (max-width: 415px){
+  html {
+    font-size: 12px;
+  }
+}
+
+
 /* Fonts */
 .font-inter {
   font-family: "Inter", sans-serif;
@@ -70,9 +78,37 @@
 }
 
 /* Theme */
-#page-banner__title {
-  font-size: clamp(4.25rem, 21.818vw + -0.114rem, 5rem);
-  line-height: clamp(6.375rem, 3.636vw + 5.648rem, 6.5rem);
+#page-banner {
+  @apply relative text-white-light font-light pt-32 pb-20 px-4 bg-black;
+
+  #page-banner__bg {
+    @apply absolute top-0 left-0 right-0 bottom-0 bg-cover opacity-30;
+  }
+
+  #page-banner__box {
+    @apply relative z-10 max-w-screen-lg mx-auto;
+
+    #page-banner__title {
+      font-size: clamp(4.25rem, 21.818vw + -0.114rem, 5rem);
+      line-height: clamp(6.375rem, 3.636vw + 5.648rem, 6.5rem);
+      @apply leading-xxlarge mb-4;
+    }
+    #page-banner__intro {
+      @apply text-medium-1 leading-medium-1;
+    }
+  }
+}
+#main-box {
+  @apply relative max-w-screen-lg mx-auto px-2 py-14;
+
+  #main-content {
+    @apply space-y-7 [&_p]:text-base-1 [&_p]:leading-base-1;
+  }
+}
+.meta-box {
+  a {
+    @apply font-bold capitalize;
+  }
 }
 #side-nav {
   .page_item {
