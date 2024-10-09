@@ -3,8 +3,8 @@
 <section id="page-banner">
     <div id="page-banner__bg"style="background-image: url(<? echo get_theme_file_uri('/images/office.webp') ?>)"></div>
     <div id="page-banner__box">
-        <h1 id="page-banner__title">Blog</h1>
-        <p id="page-banner__intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta!</p>
+        <h1 id="page-banner__title"><? the_archive_title(); ?></h1>
+        <p id="page-banner__intro"><? echo strip_tags(get_the_archive_description()); ?></p>
     </div>
 </section>
 

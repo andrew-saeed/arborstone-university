@@ -15,18 +15,18 @@
     <main>
         <div id="main-box">
             <? if($pageParent): ?>
-                <nav id="breadcrumb" class="invisible lg:visible absolute top-0 left-0 translate-x-2 -translate-y-1/2" aria-label="breadcrumb">
-                    <ul class="bg-white-dark flex items-center text-sm-1 border border-white-dark rounded-md shadow-base">
-                        <li><a class="inline-block bg-black-dark text-white-light px-4 py-3 rounded-l-md rounded-bl-md hover:bg-black-light" href="<? echo get_permalink($pageParent); ?>">Back to <? echo get_the_title($pageParent); ?></a></li>
-                        <li aria-current="page"><span class="inline-block text-black-dark px-4 py-3 rounded-r-md rounded-br-md"><? the_title(); ?></span></li>
+                <nav id="breadcrumb" class="invisible lg:visible" aria-label="breadcrumb">
+                    <ul >
+                        <li><a href="<? echo get_permalink($pageParent); ?>">Back to <? echo get_the_title($pageParent); ?></a></li>
+                        <li aria-current="page"><? the_title(); ?></li>
                     </ul>
                 </nav>
             <? endif; ?>
-            
+
             <?  $hasChildren = get_pages(array('child_of' => get_the_ID())); 
                 if($hasChildren or $pageParent):
             ?>
-                <nav id="side-nav" class="inline-block lg:float-right w-full lg:max-w-xs lg-left-bottom-right-bottom-margin-2 border-2 border-white-dark mb-8" aria-label="side-nav">
+                <nav id="side-nav" aria-label="side-nav" class="inline-block lg:float-right w-full lg:max-w-xs lg-left-bottom-right-bottom-margin-2 border-2 border-white-dark mb-8">
                     <ul class="text-center">
                         <?  if($pageParent) {
                                 $currentParent = $pageParent;
@@ -34,7 +34,7 @@
                                 $currentParent = get_the_ID();
                             }
                         ?>
-                        <li><a href="<? echo get_the_permalink($currentParent); ?>" class="block bg-black-dark text-medium-1 text-white-light py-5 hover:bg-black-light"><? echo get_the_title($currentParent); ?></a></li>
+                        <li class="block bg-black-dark text-medium-1 text-white-light py-5 hover:bg-black-light"><a href="<? echo get_the_permalink($currentParent); ?>"><? echo get_the_title($currentParent); ?></a></li>
                         <? wp_list_pages(array('title_li'=> NULL, 'child_of'=> $currentParent)); ?>
                     </ul>
                 </nav>
