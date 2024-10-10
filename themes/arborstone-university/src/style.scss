@@ -32,7 +32,6 @@
   }
 }
 
-
 /* Fonts */
 .font-inter {
   font-family: "Inter", sans-serif;
@@ -165,11 +164,11 @@
       .posts-sample__item__info {
   
         .item__title {
-          @apply text-medium-1 leading-medium-1 font-light text-blue-dark hover:underline;
+          @apply text-medium-1 leading-medium-1 font-light text-blue-dark capitalize hover:underline;
         }
   
         .item__excerpt {
-          @apply text-base leading-base;
+          @apply text-base leading-base first-letter:capitalize;
         }
   
         .item__read-more {
