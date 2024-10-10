@@ -1,21 +1,12 @@
 import loadNavMenu from "./nav-menu"
+import overlayMask from "./overlay-mask"
+import swiperSection from "./swiper-section"
 
 window.onload = () => {
     // init mask
-    const mask = document.querySelector('#mask')
-    mask.addEventListener('transitionend', () => {
-        if(mask.style.opacity === '0') {
-            mask.style.visibility = 'hidden'
-        }
-    })
-    mask.addEventListener('transitionstart', () => {
-        if(mask.style.opacity === '1') { 
-            mask.style.visibility = 'visible'
-            document.body.style.overflowY = 'hidden'
-        } else if(mask.style.opacity === '0') {
-            document.body.style.overflowY = 'scroll'
-        }
-    })
+    overlayMask()
+    // init swiper
+    swiperSection()
     // load nav menu
     loadNavMenu()
 }

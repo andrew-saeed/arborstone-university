@@ -23,7 +23,8 @@ export default {
 			'black-dim': 'var(--black-dim)',
 			'green': 'var(--green)',
 			'red': 'var(--red)',
-			'yellow': 'var(--yellow)',
+			'yellow-light': 'var(--yellow-light)',
+			'yellow-dark': 'var(--yellow-dark)',
 			'blue-light': 'var(--blue-light)',
 			'blue-dark': 'var(--blue-dark)',
 			'blue-dim': 'var(--blue-dim)',
@@ -58,9 +59,11 @@ export default {
 		lineHeight: {
 			'base': '1.625rem', //26px
 			'base-1': '1.75rem', //28px
+			'base-2': '1.875rem', //28px
 			'medium-1': '2.125rem', //34px
 			'medium-2': '2.375rem', //38px
 			'large': '2.875rem', //46px
+			'xlarge': '4.375rem', //70px
 			'xxlarge': '5.625rem' //90px
 		},
 		boxShadow: {

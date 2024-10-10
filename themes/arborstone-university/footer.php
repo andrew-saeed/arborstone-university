@@ -1,14 +1,14 @@
         <footer class="bg-[linear-gradient(180deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_50%)] pt-16 pb-8">
             <ul class="grid gap-y-6 grid-rows-[repeat(4,max-content)] lg:grid-rows-1 justify-items-center w-full max-w-screen-md lg:max-w-screen-lg mx-auto
-                [&_h4]:text-medium-2 [&_h4]:font-bold font-light max-lg:text-center capitalize
+                [&_h6]:text-medium-2 [&_h6]:font-bold font-light max-lg:text-center capitalize
                 [&_ul_li_a:hover]:underline"
             >
                 <li class="col-start-1 col-end-3 lg:col-start-1 lg:col-end-2">
-                    <h4>arborstone<span class="font-light"> university</span></h4>
+                    <h6>arborstone<span class="font-light"> university</span></h6>
                     <p>999-999-9999</p>
                 </li>
                 <li class="col-start-1 col-end-2 lg:col-start-2 lg:col-end-3">
-                    <h4>explore</h4>
+                    <h6>explore</h6>
                     <ul>
                         <li><a href="<? echo site_url('/about-us'); ?>" aria-label="about us">about us</a></li>
                         <li><a href="<? echo site_url('/programs'); ?>" aria-label="programs">programs</a></li>
@@ -18,7 +18,7 @@
                     </ul>
                 </li>
                 <li class="col-start-2 col-end-3 lg:col-start-3 lg:col-end-4">
-                    <h4>learn</h4>
+                    <h6>learn</h6>
                     <ul>
                         <li><a href="<? echo site_url('/legal'); ?>" aria-label="legal">legal</a></li>
                         <li><a href="<? echo site_url('/privacy-policy'); ?>" aria-label="privacy policy">privacy</a></li>
@@ -26,7 +26,7 @@
                     </ul>
                 </li>
                 <li class="col-start-1 col-end-3 max-lg:w-full lg:col-start-4 lg:col-end-5">
-                    <h4>connect with us</h4>
+                    <h6>connect with us</h6>
                     <ul id="social-links" class="flex gap-x-4 max-lg:px-2">
                         <li class="w-full flex"><a class="inline-block w-full lg:w-[2.1875rem] h-[2.1875rem] bg-[#4862a3] py-2 hover:opacity-70" href="#" aria-label="facebook"><svg width="100%" height="100%" viewBox="-5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>facebook [#176]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-385.000000, -7399.000000)" fill="#ffffff"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M335.821282,7259 L335.821282,7250 L338.553693,7250 L339,7246 L335.821282,7246 L335.821282,7244.052 C335.821282,7243.022 335.847593,7242 337.286884,7242 L338.744689,7242 L338.744689,7239.14 C338.744689,7239.097 337.492497,7239 336.225687,7239 C333.580004,7239 331.923407,7240.657 331.923407,7243.7 L331.923407,7246 L329,7246 L329,7250 L331.923407,7250 L331.923407,7259 L335.821282,7259 Z" id="facebook-[#176]"> </path> </g> </g> </g> </g></svg></a></li>
                         <li class="w-full flex"><a class="inline-block w-full lg:w-[2.1875rem] h-[2.1875rem] bg-white py-2 hover:opacity-70" href="#" aria-label="x"><svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50"><path d="M 5.9199219 6 L 20.582031 27.375 L 6.2304688 44 L 9.4101562 44 L 21.986328 29.421875 L 31.986328 44 L 44 44 L 28.681641 21.669922 L 42.199219 6 L 39.029297 6 L 27.275391 19.617188 L 17.933594 6 L 5.9199219 6 z M 9.7167969 8 L 16.880859 8 L 40.203125 42 L 33.039062 42 L 9.7167969 8 z"></path></svg></a></li>

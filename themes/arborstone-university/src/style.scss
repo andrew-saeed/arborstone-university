@@ -11,9 +11,10 @@
   --black-dim: rgb(40, 54, 24, 0.8);
   --green: #49C055;
   --red: #ff5e32;
-  --yellow: #FFC801;
+  --yellow-light: #f4d35e;
+  --yellow-dark: #d2b651;
   --blue-light: #38bdf8;
-  --blue-dark: #5748AE;
+  --blue-dark: #0d3b66;
   --blue-dim: rgba(87, 72, 174, 0.8);
   --gray-light: #bcbcbf;
   --gray-dark: #9ca3af;
@@ -128,6 +129,76 @@
     @apply space-y-7 [&_p]:text-base-1 [&_p]:leading-base-1;
   }
 }
+.posts-sample {
+  @apply flex;
+  
+  .posts-sample__box {
+    @apply space-y-12 p-10;
+
+    .posts-sample__title {
+      @apply text-medium-2 leading-medium-2 text-center;
+    }
+    
+    .posts-sample__item {
+      @apply grid grid-cols-[max-content_1fr] gap-x-4;
+  
+      .posts-sample__item__date {
+        @apply  flex flex-col justify-center items-center w-[5.2rem] h-[5.2rem] rounded-[50%] cursor-pointer hover:opacity-80;
+  
+        &.style--blue {
+          @apply bg-blue-dark text-white-light;
+        }
+  
+        &.style--yellow {
+          @apply bg-yellow-light text-white-light;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22);
+        }
+  
+        .date__month {
+          @apply text-medium-1 leading-medium-1 font-light uppercase;
+        }
+  
+        .date__day {
+          @apply text-[2rem] leading-[2rem] font-black;
+        }
+      }
+      .posts-sample__item__info {
+  
+        .item__title {
+          @apply text-medium-1 leading-medium-1 font-light text-blue-dark hover:underline;
+        }
+  
+        .item__excerpt {
+          @apply text-base leading-base;
+        }
+  
+        .item__read-more {
+          @apply text-base leading-base font-light text-blue-dark capitalize hover:underline;
+        }
+      }
+    }
+  }
+}
+.btn {
+  @apply inline-block capitalize rounded-lg shadow-base;
+
+  &--blue {
+    @apply bg-blue-dark text-white-light hover:bg-blue-light;
+  }
+
+  &--yellow {
+    @apply bg-yellow-light text-white-light hover:bg-yellow-dark;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22);
+  }
+
+  &--large {
+    @apply text-medium-2 leading-medium-2 tracking-wider font-black py-4 px-9;
+  }
+
+  &--medium {
+    @apply text-base-2 leading-base-2 font-bold py-3 px-6;
+  }
+}
 
 /* Handle Wordpress Dynamic Classes */
 #side-nav {
@@ -164,4 +235,12 @@
 #main-nav .logo_a {
   font-size: clamp(1.375rem, 9.032vw + -0.431rem, 2.25rem);
   line-height: clamp(2.063rem, 8.903vw + 0.282rem, 2.925rem);
+}
+
+/* Swiper styling */
+.swiper-pagination-bullet {
+  @apply w-4 h-4 bg-black-dark border-2 border-white-light opacity-100 #{!important};
+}
+.swiper-pagination-bullet-active {
+  @apply bg-white-light #{!important};
 }
