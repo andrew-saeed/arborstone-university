@@ -134,6 +134,14 @@
   .posts-sample__box {
     @apply space-y-12 p-10;
 
+    &.with-divider {
+      @apply divide-y-2 divide-white-dark;
+      
+      .posts-sample__item {
+        @apply pt-12 [&:first-of-type]:pt-0;
+      }
+    }
+
     .posts-sample__title {
       @apply text-medium-2 leading-medium-2 text-center;
     }
