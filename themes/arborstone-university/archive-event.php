@@ -9,14 +9,18 @@
 </section>
 
 <main>
-    <div id="main-box" class="[&_article_a:hover]:underline">
+    <div id="main-box">
         <section class="posts-sample">
             <div class="posts-sample__box with-divider">
-                <? while( have_posts() ): the_post(); ?>
+                <? 
+                    while( have_posts() ): the_post();
+
+                    $eventDate = new DateTime(get_field('event_date'));
+                ?>
                     <div class="posts-sample__item">
                         <div class="posts-sample__item__date style--blue">
-                            <span class="date__month"><? the_time('M'); ?></span>
-                            <span class="date__day"><? the_time('d'); ?></span>
+                            <span class="date__month"><?= $eventDate->format('M'); ?></span>
+                            <span class="date__day"><?= $eventDate->format('d'); ?></span>
                         </div>
                         <div class="posts-sample__item__info">
                             <h5 class="item__title">

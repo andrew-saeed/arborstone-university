@@ -1,7 +1,6 @@
         <footer class="bg-[linear-gradient(180deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_50%)] pt-16 pb-8">
             <ul class="grid gap-y-6 grid-rows-[repeat(4,max-content)] lg:grid-rows-1 justify-items-center w-full max-w-screen-md lg:max-w-screen-lg mx-auto
-                [&_h6]:text-medium-2 [&_h6]:font-bold font-light max-lg:text-center capitalize
-                [&_ul_li_a:hover]:underline"
+                [&_h6]:text-medium-2 [&_h6]:font-bold font-light max-lg:text-center capitalize"
             >
                 <li class="col-start-1 col-end-3 lg:col-start-1 lg:col-end-2">
                     <h6>arborstone<span class="font-light"> university</span></h6>

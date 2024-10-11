@@ -121,11 +121,18 @@
     }
   }
 }
-#main-box {
-  @apply relative max-w-screen-lg mx-auto px-2 py-14;
+main {
 
-  #main-content {
-    @apply space-y-7 [&_p]:text-base-1 [&_p]:leading-base-1;
+  #main-box {
+    @apply relative max-w-screen-lg mx-auto px-2 py-14;
+  
+    #main-content {
+      @apply space-y-7 [&_p]:text-base-1 [&_p]:leading-base-1;
+    }
+  }
+
+  a:not(.btn):hover {
+    @apply underline;
   }
 }
 .posts-sample {
@@ -172,7 +179,7 @@
       .posts-sample__item__info {
   
         .item__title {
-          @apply text-medium-1 leading-medium-1 font-light text-blue-dark capitalize hover:underline;
+          @apply text-medium-1 leading-medium-1 font-light text-blue-dark capitalize;
         }
   
         .item__excerpt {
@@ -180,7 +187,7 @@
         }
   
         .item__read-more {
-          @apply text-base leading-base font-light text-blue-dark capitalize hover:underline;
+          @apply text-base leading-base font-light text-blue-dark capitalize;
         }
       }
     }
@@ -245,6 +252,8 @@
 }
 
 /* Swiper styling */
+@import '../node_modules/swiper/swiper.min.css';
+@import '../node_modules/swiper/modules/pagination/pagination.min.css';
 .swiper-pagination-bullet {
   @apply w-4 h-4 bg-black-dark border-2 border-white-light opacity-100 #{!important};
 }

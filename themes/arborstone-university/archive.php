@@ -11,8 +11,7 @@
 <main>
     <div id="main-box" 
         class="divide-y-2 divide-white-dark
-        [&_article]:py-12 [&_article:first-of-type]:pt-0 [&_article:last-of-type]:pb-0
-        [&_article_a:hover]:underline"
+        [&_article]:py-12 [&_article:first-of-type]:pt-0 [&_article:last-of-type]:pb-0"
     >
         <? while( have_posts() ): the_post(); ?>
             <article class="space-y-4">

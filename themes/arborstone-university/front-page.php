@@ -29,18 +29,20 @@
                         ));
 
                         while($homepagePosts->have_posts()): $homepagePosts->the_post();
+
+                        $eventDate = new DateTime(get_field('event_date'));
                     ?>
                         <div class="posts-sample__item">
                             <div class="posts-sample__item__date style--blue">
-                                <span class="date__month"><? the_time('M'); ?></span>
-                                <span class="date__day"><? the_time('d'); ?></span>
+                                <span class="date__month"><?= $eventDate->format('M'); ?></span>
+                                <span class="date__day"><?= $eventDate->format('d'); ?></span>
                             </div>
                             <div class="posts-sample__item__info">
                                 <h5 class="item__title">
                                     <a href="<? the_permalink(); ?>"><? the_title() ?></a>
                                 </h5>
                                 <p class="item__excerpt"><? echo get_the_excerpt(); ?></p>
-                                <a class="item__read-more" href="#">learn more</a>
+                                <a class="item__read-more" href="<? the_permalink(); ?>">learn more</a>
                             </div>
                         </div>
                     <? 
@@ -49,7 +51,7 @@
                     ?>
                     
                     <div class="text-center">
-                        <a href="#" class="btn btn--blue btn--medium">view all events</a>
+                        <a href="<?= get_post_type_archive_link('event'); ?>" class="btn btn--blue btn--medium">view all events</a>
                     </div>
                 </div>
             </section>
@@ -74,7 +76,7 @@
                                     <a href="<? the_permalink(); ?>"><? the_title() ?></a>
                                 </h5>
                                 <p class="item__excerpt"><? echo get_the_excerpt(); ?></p>
-                                <a class="item__read-more" href="#">learn more</a>
+                                <a class="item__read-more" href="<? the_permalink(); ?>">learn more</a>
                             </div>
                         </div>
                     <? 
@@ -83,7 +85,7 @@
                     ?>
                     
                     <div class="text-center">
-                        <a href="#" class="btn btn--yellow btn--medium">view all posts</a>
+                        <a href="<?= site_url('/blog'); ?>" class="btn btn--yellow btn--medium">view all posts</a>
                     </div>
                 </div>
             </section>
