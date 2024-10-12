@@ -23,9 +23,21 @@
                     <h4 class="posts-sample__title">Upcoming Events</h4>
                     
                     <?  
+                        $today = date('Ymd');
                         $homepagePosts = new WP_Query(array(
                             'posts_per_page' => 2,
-                            'post_type' => 'event'
+                            'post_type' => 'event',
+                            'meta_key' => 'event_date',
+                            'orderby' => 'meta_value_num',
+                            'order' => 'DES',
+                            'meta_query' => array(
+                                array(
+                                    'key' => 'event_date',
+                                    'compare' => '>=',
+                                    'value' => $today,
+                                    'type' => 'numeric'
+                                )
+                            )
                         ));
 
                         while($homepagePosts->have_posts()): $homepagePosts->the_post();
