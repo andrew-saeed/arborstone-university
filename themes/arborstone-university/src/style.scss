@@ -205,6 +205,10 @@ main {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22);
   }
 
+  &--outline {
+    @apply border border-black-light hover:bg-white-dark;
+  }
+
   &--large {
     @apply text-medium-2 leading-medium-2 tracking-wider font-black py-4 px-9;
   }

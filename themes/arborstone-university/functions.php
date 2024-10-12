@@ -29,10 +29,12 @@ function theme_files() {
     wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
     wp_enqueue_style('theme_main_style', $style);
 }
+add_action('wp_enqueue_scripts', 'theme_files');
 
 function theme_features() {
     add_theme_support('title-tag');
 }
+add_action('after_setup_theme', 'theme_features');
 
 function remove_archive_title_prefix($title) {
     if (is_category()) {
@@ -55,8 +57,22 @@ function remove_archive_title_prefix($title) {
     
     return $title;
 }
-
-add_action('wp_enqueue_scripts', 'theme_files');
-add_action('after_setup_theme', 'theme_features');
-
 add_filter('get_the_archive_title', 'remove_archive_title_prefix');
+
+function adjust_queries($query) {
+    if(!is_admin() AND is_post_type_archive('event') AND is_main_query()) {
+        $today = date('Ymd');
+        $query->set('meta_key', 'event_date');
+        $query->set('orderby', 'meta_value_num');
+        $query->set('order', 'ASC');
+        $query->set('meta_query', array(
+            array(
+                'key' => 'event_date',
+                'compare' => '>=',
+                'value' => $today,
+                'type' => 'numeric'
+            )
+        ));
+    }
+}
+add_action('pre_get_posts', 'adjust_queries');

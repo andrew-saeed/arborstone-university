@@ -3,8 +3,8 @@
 <section id="page-banner">
     <div id="page-banner__bg"style="background-image: url(<? echo get_theme_file_uri('/images/office.webp') ?>)"></div>
     <div id="page-banner__box">
-        <h1 id="page-banner__title">all events</h1>
-        <p id="page-banner__intro"><? echo strip_tags(get_the_archive_description()); ?></p>
+        <h1 id="page-banner__title">upcoming events</h1>
+        <p id="page-banner__intro">see what is going on and be updated</p>
     </div>
 </section>
 
@@ -32,6 +32,9 @@
                     </div>
                 <? endwhile; ?>
             </div>
+        </section>
+        <section class="text-center mt-8">
+            <a href="#" class="btn btn--medium btn--outline !font-[400]">browse older events ...</a>
         </section>
     </div>
 </main>
