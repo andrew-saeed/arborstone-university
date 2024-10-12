@@ -3,8 +3,8 @@
 <section id="page-banner">
     <div id="page-banner__bg"style="background-image: url(<? echo get_theme_file_uri('/images/office.webp') ?>)"></div>
     <div id="page-banner__box">
-        <h1 id="page-banner__title">upcoming events</h1>
-        <p id="page-banner__intro">see what is going on and be updated</p>
+        <h1 id="page-banner__title"><? the_title(); ?></h1>
+        <p id="page-banner__intro"><?= get_the_excerpt(); ?></p>
     </div>
 </section>
 
@@ -12,8 +12,26 @@
     <div id="main-box">
         <section class="posts-sample">
             <div class="posts-sample__box with-divider">
-                <? 
-                    while( have_posts() ): the_post();
+                <?  
+                    $today = date('Ymd');
+                    $olderEvents = new WP_Query(array(
+                        'paged' => get_query_var('paged', 1),
+                        'posts_per_page' => 3,
+                        'post_type' => 'event',
+                        'meta_key' => 'event_date',
+                        'orderby' => 'meta_value_num',
+                        'order' => 'DES',
+                        'meta_query' => array(
+                            array(
+                                'key' => 'event_date',
+                                'compare' => '<',
+                                'value' => $today,
+                                'type' => 'numeric'
+                            )
+                        )
+                    ));
+
+                    while($olderEvents->have_posts()): $olderEvents->the_post();
 
                     $eventDate = new DateTime(get_field('event_date'));
                 ?>
@@ -30,11 +48,16 @@
                             <a class="item__read-more" href="#">learn more</a>
                         </div>
                     </div>
-                <? endwhile; ?>
+                <? 
+                    endwhile;
+                    wp_reset_postdata();
+                ?>
             </div>
         </section>
-        <section class="text-center mt-8">
-            <a href="<?= site_url('/older-events'); ?>" class="btn btn--medium btn--outline !font-[400]">browse older events ...</a>
+        <section class="text-center text-base-1 text-black-dark [&_span]:text-black-light [&_span]:font-black">
+            <?= paginate_links(array(
+                'total' => $olderEvents->max_num_pages
+            )); ?>
         </section>
     </div>
 </main>

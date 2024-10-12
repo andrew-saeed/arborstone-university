@@ -33,6 +33,7 @@ add_action('wp_enqueue_scripts', 'theme_files');
 
 function theme_features() {
     add_theme_support('title-tag');
+    add_post_type_support( 'page', 'excerpt' );
 }
 add_action('after_setup_theme', 'theme_features');
 
