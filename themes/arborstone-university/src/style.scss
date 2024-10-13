@@ -77,6 +77,13 @@
   }
 }
 
+/* Init */
+:is(main, footer) {
+    a:not(.btn):hover {
+    @apply underline underline-offset-2;
+  }
+}
+
 /* Theme Components */
 #page-banner {
   @apply relative text-white-light font-light pt-32 pb-20 px-4 bg-black;
@@ -127,12 +134,8 @@ main {
     @apply relative max-w-screen-lg mx-auto px-2 py-14;
   
     #main-content {
-      @apply space-y-7 [&_p]:text-base-1 [&_p]:leading-base-1;
+      @apply space-y-7 text-base-1 leading-base-1;
     }
-  }
-
-  a:not(.btn):hover {
-    @apply underline;
   }
 }
 .posts-sample {
@@ -215,6 +218,10 @@ main {
 
   &--medium {
     @apply text-base-2 leading-base-2 font-bold py-3 px-6;
+  }
+
+  &--small {
+    @apply text-base-1 leading-base-1 font-bold py-1 px-2;
   }
 }
 

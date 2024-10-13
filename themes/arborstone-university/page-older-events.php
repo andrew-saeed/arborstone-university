@@ -54,7 +54,7 @@
                 ?>
             </div>
         </section>
-        <section class="text-center text-base-1 text-black-dark [&_span]:text-black-light [&_span]:font-black">
+        <section class="text-center text-base-1 text-black-dark mt-8 [&_span]:text-black-light [&_span]:font-black">
             <?= paginate_links(array(
                 'total' => $olderEvents->max_num_pages
             )); ?>

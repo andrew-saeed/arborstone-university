@@ -5,13 +5,13 @@
 <? while( have_posts() ): the_post(); ?>
 
     <section id="page-banner">
-        <div id="page-banner__bg"style="background-image: url(<? echo get_theme_file_uri('/images/office.webp') ?>)"></div>
+        <div id="page-banner__bg" style="background-image: url(<? echo get_theme_file_uri('/images/office.webp') ?>)"></div>
         <div id="page-banner__box" class="text-center">
             <h1 class="text-[6.25rem] leading-[6.25rem]">Welcome</h1>
             <h2 class="text-[3.125rem] leading[3.125rem]">We think you’ll like it here.</h2>
             <h3 class="text-medium-2 leading-medium-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta!</h3>
             <div class="mt-8">
-                <a class="btn btn--blue btn--large" href="#">Find Your Major</a>
+                <a class="btn btn--blue btn--large" href="<?= get_post_type_archive_link('program'); ?>">Find Your Major</a>
             </div>
         </div>
     </section>

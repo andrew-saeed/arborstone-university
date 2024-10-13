@@ -61,6 +61,10 @@ function remove_archive_title_prefix($title) {
 add_filter('get_the_archive_title', 'remove_archive_title_prefix');
 
 function adjust_queries($query) {
+    if(!is_admin() AND is_post_type_archive('program') AND is_main_query()) {
+        $query->set('orderby', 'title');
+        $query->set('order', 'ASC');
+    }
     if(!is_admin() AND is_post_type_archive('event') AND is_main_query()) {
         $today = date('Ymd');
         $query->set('meta_key', 'event_date');
