@@ -71,6 +71,11 @@
 .left-right-margin-1 {
   @include withRtl(margin, 0 0 0 1rem, 0 1rem 0 0);
 }
+.lg-right-bottom-left-bottom-margin-2 {
+  @media screen and (min-width:992px) {
+    @include withRtl(margin, 0 2rem 2rem 0, 0 0 2rem 2rem);
+  }
+}
 .lg-left-bottom-right-bottom-margin-2 {
   @media screen and (min-width:992px) {
     @include withRtl(margin, 0 0 2rem 2rem, 0 2rem 2rem 0);

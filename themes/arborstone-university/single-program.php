@@ -25,6 +25,44 @@
 
             <? 
                 $today = date('Ymd');
+                $relatedProfessors = new WP_Query(array(
+                    'posts_per_page' => -1,
+                    'post_type' => 'professor',
+                    'meta_query' => array(
+                        array(
+                            'key' => 'related_programs',
+                            'compare' => 'LIKE',
+                            'value' => '"' . get_the_ID() . '"'
+                        )
+                    )
+                ));
+                if($relatedProfessors):
+            ?>
+                <div class="mt-12">
+                    <h2 class="text-large leading-large font-light text-black-light capitalize tracking-wider">taught by</h2>
+                    <section class="p-10">
+                        <? while($relatedProfessors->have_posts()): $relatedProfessors->the_post(); ?>
+                            <a href="<? the_permalink(); ?>" 
+                                class="relative flex 
+                                w-full max-w-[16rem] 
+                                overflow-hidden !no-underline 
+                                [&:hover_img]:rotate-3 [&:hover_img]:scale-125"
+                            >
+                                <img class="transition duration-1000" src="<? the_post_thumbnail_url(); ?>" alt="<? the_title(); ?>">
+                                <span class="absolute bottom-0 left-0 w-full bg-black-dark text-base-1 leading-base-1 text-white-light font-bold px-2 py-1">
+                                    <? the_title(); ?>
+                                </spn>
+                            </a>
+                        <? 
+                            endwhile;
+                            wp_reset_postdata();
+                        ?>
+                    </section>
+                </div>
+            <? endif ?>
+
+            <? 
+                $today = date('Ymd');
                 $relatedEvents = new WP_Query(array(
                     'paged' => get_query_var('paged', 1),
                     'posts_per_page' => 3,

@@ -33,6 +33,20 @@ function arborstone_post_types() {
         ),
         'menu_icon' => 'dashicons-awards'
     ));
+
+    register_post_type('professor', array(
+        'public' => true,
+        'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
+        'labels' => array(
+            'name' => 'Professors',
+            'add_new' => 'Add New Professor',
+            'add_new_item' => 'Add New Professor',
+            'edit_item' => 'Edit Professor',
+            'all_items' => 'All Professors',
+            'singular_name' => 'Professor'
+        ),
+        'menu_icon' => 'dashicons-welcome-learn-more'
+    ));
 }
 
 add_action('init', 'arborstone_post_types');

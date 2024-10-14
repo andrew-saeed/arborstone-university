@@ -49,7 +49,7 @@
                     [&.current-link]:bg-black"
                 >
                     <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo (is_page('about-us') or wp_get_post_parent_id() == 19)? 'current-link':'' ?>" href="<? echo site_url('/about-us'); ?>">about us</a></li>
-                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo is_page('programs')? 'current-link':'' ?>" href="<? echo site_url('/programs'); ?>">programs</a></li>
+                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo get_post_type() === 'program'? 'current-link':'' ?>" href="<? echo site_url('/programs'); ?>">programs</a></li>
                     <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo (get_post_type() === 'event' OR is_page('older-events'))? 'current-link':'' ?>" href="<? echo site_url('/events'); ?>">events</a></li>
                     <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo is_page('campuses')? 'current-link':'' ?>" href="<? echo site_url('/campuses'); ?>">campuses</a></li>
                     <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo get_post_type() === 'post'? 'current-link':'' ?>" href="<? echo site_url('/blog'); ?>">blog</a></li>
