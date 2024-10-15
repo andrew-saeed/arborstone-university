@@ -84,3 +84,21 @@ function adjust_queries($query) {
     }
 }
 add_action('pre_get_posts', 'adjust_queries');
+
+?>
+
+<? function pageBanner($args = NULL) {
+    
+    $photo = $args['photo'] ?? get_theme_file_uri('/images/office.webp');
+    $title = $args['title'] ?? get_the_title();
+    $excerpt = $args['excerpt'] ?? get_the_excerpt(); ?>
+
+    <section id="page-banner">
+        <div id="page-banner__bg" style="background-image: url('<?  echo $photo; ?>')"></div>
+        <div id="page-banner__box">
+            <h1 id="page-banner__title"><? echo $title; ?></h1>
+            <p id="page-banner__intro"><? echo $excerpt; ?></p>
+        </div>
+    </section>
+
+<?  } ?>

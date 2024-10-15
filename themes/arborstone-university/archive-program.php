@@ -1,12 +1,9 @@
 <? get_header(); ?>
 
-<section id="page-banner">
-    <div id="page-banner__bg"style="background-image: url(<? echo get_theme_file_uri('/images/office.webp') ?>)"></div>
-    <div id="page-banner__box">
-        <h1 id="page-banner__title">programs</h1>
-        <p id="page-banner__intro">Find your major, ask for help if you need!</p>
-    </div>
-</section>
+<? pageBanner(array(
+    'title' => 'programs',
+    'excerpt' => 'Find your major, ask for help if you need!'
+)); ?>
 
 <main>
     <div id="main-box">

@@ -1,12 +1,9 @@
 <? get_header(); ?>
 
-<section id="page-banner">
-    <div id="page-banner__bg"style="background-image: url(<? echo get_theme_file_uri('/images/office.webp') ?>)"></div>
-    <div id="page-banner__box">
-        <h1 id="page-banner__title">Blog</h1>
-        <p id="page-banner__intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta!</p>
-    </div>
-</section>
+<? pageBanner(array(
+    'title' => 'Blog',
+    'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta!'
+)); ?>
 
 <main>
     <div id="main-box" 

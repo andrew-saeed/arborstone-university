@@ -1,12 +1,9 @@
 <? get_header(); ?>
 
-<section id="page-banner">
-    <div id="page-banner__bg"style="background-image: url(<? echo get_theme_file_uri('/images/office.webp') ?>)"></div>
-    <div id="page-banner__box">
-        <h1 id="page-banner__title">upcoming events</h1>
-        <p id="page-banner__intro">see what is going on and be updated</p>
-    </div>
-</section>
+<? pageBanner(array(
+    'title' => 'upcoming events',
+    'excerpt' => 'see what is going on and be updated'
+)); ?>
 
 <main>
     <div id="main-box">
