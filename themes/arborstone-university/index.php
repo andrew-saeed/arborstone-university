@@ -17,7 +17,7 @@
                         <a href="<? the_permalink(); ?>"><? the_title(); ?></a>
                     </h2>
                     <p class="inline-block bg-white-dark text-base-1 text-black-light font-light capitalize p-2 mt-4 shadow-base [&_a]:font-bold">
-                        By <? the_author_posts_link(); ?> on <? the_time('n.j.y') ?> in <? echo get_the_category_list(', '); ?>
+                        By <? the_author_posts_link(); ?> on <? the_time('n.j.y') ?> in <?= get_the_category_list(', '); ?>
                     </p>
                 </header>
                 <div class="[&_p]:text-base-1 [&_p]:leading-base-1">

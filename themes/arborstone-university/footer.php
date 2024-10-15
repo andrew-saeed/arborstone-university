@@ -9,19 +9,19 @@
                 <li class="col-start-1 col-end-2 lg:col-start-2 lg:col-end-3">
                     <h6>explore</h6>
                     <ul>
-                        <li><a href="<? echo site_url('/about-us'); ?>" aria-label="about us">about us</a></li>
-                        <li><a href="<? echo site_url('/programs'); ?>" aria-label="programs">programs</a></li>
-                        <li><a href="<? echo site_url('/events'); ?>" aria-label="events">events</a></li>
-                        <li><a href="<? echo site_url('/campuses'); ?>" aria-label="campuses">campuses</a></li>
-                        <li><a href="<? echo site_url('/blog'); ?>" aria-label="blog">blog</a></li>
+                        <li><a href="<?= site_url('/about-us'); ?>" aria-label="about us">about us</a></li>
+                        <li><a href="<?= site_url('/programs'); ?>" aria-label="programs">programs</a></li>
+                        <li><a href="<?= site_url('/events'); ?>" aria-label="events">events</a></li>
+                        <li><a href="<?= site_url('/campuses'); ?>" aria-label="campuses">campuses</a></li>
+                        <li><a href="<?= site_url('/blog'); ?>" aria-label="blog">blog</a></li>
                     </ul>
                 </li>
                 <li class="col-start-2 col-end-3 lg:col-start-3 lg:col-end-4">
                     <h6>learn</h6>
                     <ul>
-                        <li><a href="<? echo site_url('/legal'); ?>" aria-label="legal">legal</a></li>
-                        <li><a href="<? echo site_url('/privacy-policy'); ?>" aria-label="privacy policy">privacy</a></li>
-                        <li><a href="<? echo site_url('/careers'); ?>" aria-label="careers">careers</a></li>
+                        <li><a href="<?= site_url('/legal'); ?>" aria-label="legal">legal</a></li>
+                        <li><a href="<?= site_url('/privacy-policy'); ?>" aria-label="privacy policy">privacy</a></li>
+                        <li><a href="<?= site_url('/careers'); ?>" aria-label="careers">careers</a></li>
                     </ul>
                 </li>
                 <li class="col-start-1 col-end-3 max-lg:w-full lg:col-start-4 lg:col-end-5">

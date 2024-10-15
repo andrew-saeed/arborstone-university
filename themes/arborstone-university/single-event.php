@@ -8,7 +8,7 @@
         <div id="main-box">
             <nav id="breadcrumb" aria-label="breadcrumb">
                 <ul>
-                    <li><a class="capitalize" href="<? echo get_post_type_archive_link('event'); ?>">events</a></li>
+                    <li><a class="capitalize" href="<?= get_post_type_archive_link('event'); ?>">events</a></li>
                     <li aria-current="page"><? the_title(); ?></li>
                 </ul>
             </nav>

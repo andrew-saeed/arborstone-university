@@ -8,9 +8,9 @@
         <div id="main-box">
             <nav id="breadcrumb" aria-label="breadcrumb">
                 <ul>
-                    <li><a class="capitalize" href="<? echo site_url('/blog'); ?>">articles</a></li>
+                    <li><a class="capitalize" href="<?= site_url('/blog'); ?>">articles</a></li>
                     <li aria-current="page">
-                        By <? the_author_posts_link(); ?> on <? the_time('n.j.y') ?> in <? echo get_the_category_list(', '); ?>
+                        By <? the_author_posts_link(); ?> on <? the_time('n.j.y') ?> in <?= get_the_category_list(', '); ?>
                     </li>
                 </ul>
             </nav>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html <? language_attributes(); ?> dir="<? echo is_rtl() ? 'rtl' : 'ltr' ?>">
+<html <? language_attributes(); ?> dir="<?= is_rtl() ? 'rtl' : 'ltr' ?>">
 <head>
     <meta charset="<? bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <? if( !is_wp_error(wp_remote_get(HMR_HOST)) ): ?>
-        <script type="module" src="<? echo HMR_HOST . '@vite/client'; ?>"></script>
+        <script type="module" src="<?= HMR_HOST . '@vite/client'; ?>"></script>
     <? endif; ?>
     <? wp_head(); ?>
 </head>
@@ -22,7 +22,7 @@
                     text-center
                     py-2"
                 >
-                    <a class="logo_a font-black" href="<? echo site_url(); ?>">arborstone <span class="font-light">university</span></a>
+                    <a class="logo_a font-black" href="<?= site_url(); ?>">arborstone <span class="font-light">university</span></a>
                 </div>
                 <div id="trigger"
                     class="w-[2rem]
@@ -48,11 +48,11 @@
                     transition-[max-height] duration-300 ease-in-out
                     [&.current-link]:bg-black"
                 >
-                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo (is_page('about-us') or wp_get_post_parent_id() == 19)? 'current-link':'' ?>" href="<? echo site_url('/about-us'); ?>">about us</a></li>
-                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo get_post_type() === 'program'? 'current-link':'' ?>" href="<? echo site_url('/programs'); ?>">programs</a></li>
-                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo (get_post_type() === 'event' OR is_page('older-events'))? 'current-link':'' ?>" href="<? echo site_url('/events'); ?>">events</a></li>
-                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo is_page('campuses')? 'current-link':'' ?>" href="<? echo site_url('/campuses'); ?>">campuses</a></li>
-                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <? echo get_post_type() === 'post'? 'current-link':'' ?>" href="<? echo site_url('/blog'); ?>">blog</a></li>
+                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <?= (is_page('about-us') or wp_get_post_parent_id() == 19)? 'current-link':'' ?>" href="<?= site_url('/about-us'); ?>">about us</a></li>
+                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <?= get_post_type() === 'program'? 'current-link':'' ?>" href="<?= site_url('/programs'); ?>">programs</a></li>
+                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <?= (get_post_type() === 'event' OR is_page('older-events'))? 'current-link':'' ?>" href="<?= site_url('/events'); ?>">events</a></li>
+                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <?= is_page('campuses')? 'current-link':'' ?>" href="<?= site_url('/campuses'); ?>">campuses</a></li>
+                    <li><a class="w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:text-white-dark <?= get_post_type() === 'post'? 'current-link':'' ?>" href="<?= site_url('/blog'); ?>">blog</a></li>
                 </ul>
                 <div 
                     id="ctrls"

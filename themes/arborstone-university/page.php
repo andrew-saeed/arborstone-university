@@ -9,9 +9,9 @@
     <main>
         <div id="main-box">
             <? if($pageParent): ?>
-                <nav id="breadcrumb" class="invisible lg:visible" aria-label="breadcrumb">
+                <nav id="breadcrumb" class="invisible lg:visible no-underline" aria-label="breadcrumb">
                     <ul >
-                        <li><a href="<? echo get_permalink($pageParent); ?>">Back to <? echo get_the_title($pageParent); ?></a></li>
+                        <li><a href="<?= get_permalink($pageParent); ?>">Back to <?= get_the_title($pageParent); ?></a></li>
                         <li aria-current="page"><? the_title(); ?></li>
                     </ul>
                 </nav>
@@ -28,7 +28,7 @@
                                 $currentParent = get_the_ID();
                             }
                         ?>
-                        <li class="block bg-black-dark text-medium-1 text-white-light py-5 hover:bg-black-light"><a href="<? echo get_the_permalink($currentParent); ?>"><? echo get_the_title($currentParent); ?></a></li>
+                        <li class="block bg-black-dark text-medium-1 text-white-light py-5 hover:bg-black-light"><a href="<?= get_the_permalink($currentParent); ?>"><?= get_the_title($currentParent); ?></a></li>
                         <? wp_list_pages(array('title_li'=> NULL, 'child_of'=> $currentParent)); ?>
                     </ul>
                 </nav>

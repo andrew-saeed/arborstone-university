@@ -8,7 +8,7 @@
         <div id="main-box">
             <nav id="breadcrumb" aria-label="breadcrumb">
                 <ul>
-                    <li><a class="capitalize" href="<? echo get_post_type_archive_link('program'); ?>">programs</a></li>
+                    <li><a class="capitalize" href="<?= get_post_type_archive_link('program'); ?>">programs</a></li>
                     <li aria-current="page"><? the_title(); ?></li>
                 </ul>
             </nav>
@@ -98,7 +98,7 @@
                                         <h5 class="item__title">
                                             <a href="<? the_permalink(); ?>"><? the_title() ?></a>
                                         </h5>
-                                        <p class="item__excerpt"><? echo get_the_excerpt(); ?></p>
+                                        <p class="item__excerpt"><?= get_the_excerpt(); ?></p>
                                         <a class="item__read-more" href="#">learn more</a>
                                     </div>
                                 </div>
