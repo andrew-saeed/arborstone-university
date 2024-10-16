@@ -63,6 +63,11 @@
     @include withRtl(padding, 0 0 0 1rem, 0 1rem 0 0);
   }
 }
+.md-right-left--padding-2 {
+  @media screen and (min-width:768px) {
+    @include withRtl(padding, 0 2rem 0 0, 0 0 0 2rem);
+  }
+}
 
 /* LTR-RTL margin */
 .right-left-margin-1 {
@@ -232,6 +237,39 @@ main {
 
   &--small {
     @apply text-base-1 leading-base-1 font-bold py-1 px-2;
+  }
+}
+#search-btn {
+  @apply w-[1.8rem] cursor-pointer;
+
+  path {
+    @apply stroke-white;
+  }
+}
+#search-box {
+  @apply fixed top-0 left-0 bottom-0 right-0 z-50;
+  @apply w-svw h-svh;
+  @apply grid grid-rows-[1.8rem_1fr] gap-y-4;
+  @apply bg-[rgba(234,230,207,0.8)];
+  @apply p-4;
+
+  #search-box__header {
+    @apply justify-self-end;
+
+    #close-search-btn {
+      @apply cursor-pointer;
+  
+      path {
+        @apply fill-black-dark;
+      }
+    }
+  }
+
+  #search-box__body {
+
+    input {
+      @apply w-full text-medium-2 leading-medium-2 text-white-dark bg-black-dark p-2;
+    }
   }
 }
 

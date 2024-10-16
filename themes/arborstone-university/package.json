@@ -17,6 +17,7 @@
     "vite": "^5.4.1"
   },
   "dependencies": {
+    "alpinejs": "^3.14.3",
     "swiper": "^9.4.1"
   }
 }
