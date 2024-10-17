@@ -7,6 +7,7 @@ function arborstone_post_types() {
         'supports' => array('title', 'editor', 'excerpt'),
         'has_archive' => true,
         'rewrite' => array('slug' => 'events'),
+        'show_in_rest' => true,
         'labels' => array(
             'name' => 'Events',
             'add_new' => 'Add New Event',
@@ -23,6 +24,7 @@ function arborstone_post_types() {
         'supports' => array('title', 'editor', 'excerpt'),
         'has_archive' => true,
         'rewrite' => array('slug' => 'programs'),
+        'show_in_rest' => true,
         'labels' => array(
             'name' => 'Programs',
             'add_new' => 'Add New Program',
@@ -37,6 +39,7 @@ function arborstone_post_types() {
     register_post_type('professor', array(
         'public' => true,
         'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
+        'show_in_rest' => true,
         'labels' => array(
             'name' => 'Professors',
             'add_new' => 'Add New Professor',

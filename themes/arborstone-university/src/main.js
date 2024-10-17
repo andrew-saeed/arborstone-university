@@ -6,8 +6,6 @@ import swiperSection from './swiper-section'
 import loadSearching from './searching'
 
 window.onload = () => {
-    // init alpinejs
-    Alpine.start()
 
     // load mask
     overlayMask()
@@ -17,4 +15,7 @@ window.onload = () => {
     loadNavMenu()
     // load searching
     loadSearching()
+
+    // init alpinejs
+    Alpine.start()
 }

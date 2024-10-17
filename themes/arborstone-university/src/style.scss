@@ -88,12 +88,13 @@
 }
 
 /* Init */
-:is(main, footer) {
-    a:not(.btn):hover {
-    @apply underline underline-offset-2;
-  }
+*:focus {
+  outline: none;
 }
-:is(#side-nav, #breadcrumb) {
+a:not(.btn):hover {
+  @apply underline underline-offset-2;
+}
+:is(#main-nav, #side-nav, #breadcrumb) {
   a {
     @apply no-underline;
   }
@@ -239,36 +240,75 @@ main {
     @apply text-base-1 leading-base-1 font-bold py-1 px-2;
   }
 }
-#search-btn {
+#start-search-btn {
   @apply w-[1.8rem] cursor-pointer;
 
   path {
-    @apply stroke-white;
+    @apply stroke-white-light;
   }
 }
 #search-box {
   @apply fixed top-0 left-0 bottom-0 right-0 z-50;
   @apply w-svw h-svh;
-  @apply grid grid-rows-[1.8rem_1fr] gap-y-4;
   @apply bg-[rgba(234,230,207,0.8)];
   @apply p-4;
 
-  #search-box__header {
-    @apply justify-self-end;
+  #search-box__layout {
+    @apply grid grid-rows-[2.5rem_1fr] gap-y-4;
+    @apply max-w-screen-md mx-auto;
 
-    #close-search-btn {
-      @apply cursor-pointer;
+    #search-box__header {
+      @apply justify-self-end;
   
-      path {
-        @apply fill-black-dark;
+      #close-search-btn {
+        @apply bg-white-dark rounded-full cursor-pointer;
+
+        path {
+          @apply stroke-black-dark;
+        }
       }
     }
-  }
+  
+    #search-box__body {
 
-  #search-box__body {
+      input {
+        @apply w-full text-medium-2 leading-medium-2 text-black-dark bg-white-dark border-b-4 border-black-dark p-2;
+        @apply placeholder:font-thin placeholder:text-medium-2 placeholder:leading-medium-2 placeholder:text-black-dark placeholder:capitalize;
+      }
 
-    input {
-      @apply w-full text-medium-2 leading-medium-2 text-white-dark bg-black-dark p-2;
+      #search-loader {
+        @apply text-base-2 leading-base-2 mt-8;
+
+        svg {
+          @apply w-8 h-8 text-white-light animate-spin fill-white-light;
+
+          path:first-of-type {
+            @apply fill-black-light;
+          }
+          path:last-of-type {
+            @apply fill-white-light;
+          }
+        }
+      }
+
+      #search-result {
+        @apply text-base-2 leading-base-2 text-white-dark font-bold capitalize;
+
+        li {
+          @apply bg-black-dark font-light border-b border-white-dark transition;
+          &:hover {
+            @apply bg-black-light;
+          }
+
+          a {
+            @apply block p-2 no-underline;
+          }
+        }
+      }
+
+      #no-result {
+        @apply text-base-2 leading-base-2 capitalize mt-8;
+      }
     }
   }
 }
