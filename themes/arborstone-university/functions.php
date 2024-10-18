@@ -2,6 +2,8 @@
 
 define('HMR_HOST', 'http://localhost:4200/wp-content/themes/arborstone-university/');
 
+require get_theme_file_path('inc/search-route.php');
+
 function theme_files() {
 
     $js = '';
@@ -84,6 +86,13 @@ function adjust_queries($query) {
     }
 }
 add_action('pre_get_posts', 'adjust_queries');
+
+function customize_rest() {
+    register_rest_field('post', 'author_name', array(
+        'get_callback' => function() {return get_the_author();}
+    ));
+}
+add_action('rest_api_init', 'customize_rest');
 
 ?>
 

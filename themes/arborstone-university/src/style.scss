@@ -250,7 +250,7 @@ main {
 #search-box {
   @apply fixed top-0 left-0 bottom-0 right-0 z-50;
   @apply w-svw h-svh;
-  @apply bg-[rgba(234,230,207,0.8)];
+  @apply bg-[rgba(234,230,207,0.95)];
   @apply p-4;
 
   #search-box__layout {
@@ -307,7 +307,7 @@ main {
       }
 
       #no-result {
-        @apply text-base-2 leading-base-2 capitalize mt-8;
+        @apply text-large leading-large text-black-dark font-bold capitalize mt-8;
       }
     }
   }
