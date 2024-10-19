@@ -29,7 +29,7 @@
                             'post_type' => 'event',
                             'meta_key' => 'event_date',
                             'orderby' => 'meta_value_num',
-                            'order' => 'DES',
+                            'order' => 'ASC',
                             'meta_query' => array(
                                 array(
                                     'key' => 'event_date',

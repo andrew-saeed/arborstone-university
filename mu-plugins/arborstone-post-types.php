@@ -3,6 +3,8 @@
 function arborstone_post_types() {
 
     register_post_type('event', array(
+        'capability_type' => 'event',
+        'map_meta_cap' => true,
         'public' => true,
         'supports' => array('title', 'editor', 'excerpt'),
         'has_archive' => true,
