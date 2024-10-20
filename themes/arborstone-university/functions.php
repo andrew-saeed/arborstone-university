@@ -94,6 +94,25 @@ function customize_rest() {
 }
 add_action('rest_api_init', 'customize_rest');
 
+function redirectSubsToHomePage() {
+    $currentUser = wp_get_current_user();
+
+    if(count($currentUser->roles) == 1 AND $currentUser->roles[0] == 'subscriber') {
+        wp_redirect(site_url('/'));
+        exit;
+    }
+}
+add_action('admin_init', 'redirectSubsToHomePage');
+
+function hideAdminbarForSubscribers() {
+    $currentUser = wp_get_current_user();
+
+    if(count($currentUser->roles) == 1 AND $currentUser->roles[0] == 'subscriber') {
+        show_admin_bar(false);
+    }
+}
+add_action('wp_loaded', 'hideAdminbarForSubscribers');
+
 ?>
 
 <? function pageBanner($args = NULL) {

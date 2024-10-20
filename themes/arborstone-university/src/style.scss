@@ -11,7 +11,7 @@
   --black-dim: rgb(40, 54, 24, 0.8);
   --green: #49C055;
   --red: #ff5e32;
-  --yellow-light: #f4d35e;
+  --yellow-light: #e6c758;
   --yellow-dark: #d2b651;
   --blue-light: #38bdf8;
   --blue-dark: #0d3b66;
@@ -66,6 +66,11 @@
 .md-right-left--padding-2 {
   @media screen and (min-width:768px) {
     @include withRtl(padding, 0 2rem 0 0, 0 0 0 2rem);
+  }
+}
+.md-right-left--padding-1 {
+  @media screen and (min-width:768px) {
+    @include withRtl(padding, 0 1rem 0 0, 0 0 0 1rem);
   }
 }
 
@@ -224,6 +229,11 @@ main {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22);
   }
 
+  &--red {
+    @apply bg-red text-white-dark hover:bg-[rgb(255,65,12)];
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22);
+  }
+
   &--outline {
     @apply border border-black-light hover:bg-white-dark;
   }
@@ -237,7 +247,7 @@ main {
   }
 
   &--small {
-    @apply text-base-1 leading-base-1 font-bold py-1 px-2;
+    @apply text-base-1 leading-base-1 font-bold py-1 px-4;
   }
 }
 #start-search-btn {
@@ -250,7 +260,7 @@ main {
 #search-box {
   @apply fixed top-0 left-0 bottom-0 right-0 z-50;
   @apply w-svw h-svh;
-  @apply bg-[rgba(234,230,207,0.95)];
+  @apply bg-[rgba(40,54,24,0.95)];
   @apply p-4;
 
   #search-box__layout {
@@ -272,7 +282,7 @@ main {
     #search-box__body {
 
       input {
-        @apply w-full text-medium-2 leading-medium-2 text-black-dark bg-white-dark border-b-4 border-black-dark p-2;
+        @apply w-full text-medium-2 leading-medium-2 text-black-dark bg-white-dark border-b-4 border-[rgba(71,95,43,0.95)] p-2;
         @apply placeholder:font-thin placeholder:text-medium-2 placeholder:leading-medium-2 placeholder:text-black-dark placeholder:capitalize;
       }
 
@@ -292,12 +302,12 @@ main {
       }
 
       #search-result {
-        @apply text-base-2 leading-base-2 text-white-dark font-bold capitalize;
+        @apply text-base-2 leading-base-2 text-black-dark font-bold capitalize;
 
         li {
-          @apply bg-black-dark font-light border-b border-white-dark transition;
+          @apply bg-white-dark font-light border-b border-black-dark transition;
           &:hover {
-            @apply bg-black-light;
+            @apply bg-black-dark text-white-dark;
           }
 
           a {
@@ -307,7 +317,7 @@ main {
       }
 
       #no-result {
-        @apply text-large leading-large text-black-dark font-bold capitalize mt-8;
+        @apply text-large leading-large text-white-dark font-bold capitalize mt-8;
       }
     }
   }
