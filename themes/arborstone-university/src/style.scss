@@ -25,6 +25,11 @@
   --dark-black-dark: #1e293b;
 }
 
+/* Body */
+body {
+  @apply bg-white-light font-inter;
+}
+
 /* Mobile global font size */
 @media screen and (max-width: 415px){
   html {
@@ -368,4 +373,30 @@ main {
 }
 .swiper-pagination-bullet-active {
   @apply bg-white-light #{!important};
+}
+
+/* Customize Login Page */
+#login {
+  @apply text-black-dark;
+  
+  h1 {
+
+    a {
+      height: unset;
+      background: unset;
+      text-indent: unset;
+      @apply w-full text-black-dark text-medium-2 leading-medium-2 font-black;
+    }
+  }
+
+  form {
+    @apply bg-white-dark;
+
+    input[type=text], input[type=password], input[type=checkbox], input[type=email] {
+      @apply bg-white-light;
+    }
+    input[type=submit] {
+      @apply bg-black-dark text-white-light;
+    }
+  }
 }

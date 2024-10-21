@@ -8,7 +8,7 @@
     <? endif; ?>
     <? wp_head(); ?>
 </head>
-<body <? body_class('bg-white-light font-inter'); ?>>
+<body <? body_class(); ?>>
     <header>
         <nav id="main-nav" class="absolute top-0 left-0 z-40 w-full">
             <div id="nav-layout"
@@ -54,11 +54,11 @@
                         <li><a class="w-full block text-center font-bold xlg:!opacity-100 xlg:!translate-x-0 xlg:!delay-0 xlg:!duration-0 hover:text-white-dark <?= is_page('campuses')? 'current-link':'' ?>" href="<?= site_url('/campuses'); ?>">campuses</a></li>
                         <li><a class="w-full block text-center font-bold xlg:!opacity-100 xlg:!translate-x-0 xlg:!delay-0 xlg:!duration-0 hover:text-white-dark <?= get_post_type() === 'post'? 'current-link':'' ?>" href="<?= site_url('/blog'); ?>">blog</a></li>
                         <? if(is_user_logged_in()): ?>
-                            <li><a href="<?= wp_logout_url(); ?>" class="btn btn--small btn--yellow xlg:!opacity-100 xlg:!translate-x-0 xlg:!delay-0 xlg:!duration-0">logout</a></li>
+                            <li><a href="<?= wp_logout_url(home_url()); ?>" class="btn btn--small btn--yellow xlg:!opacity-100 xlg:!translate-x-0 xlg:!delay-0 xlg:!duration-0">logout</a></li>
                         <? else: ?>
                             <li class="grid gap-x-2 grid-cols-[repeat(2,max-content)]">
-                                <a href="<?= esc_url(site_url('/wp-login.php')); ?>" class="btn btn--small btn--yellow xlg:!opacity-100 xlg:!translate-x-0 xlg:!delay-0 xlg:!duration-0">login</a>
-                                <a href="<?= esc_url(site_url('/wp-signup.php')); ?>" class="btn btn--small btn--red xlg:!opacity-100 xlg:!translate-x-0 xlg:!delay-0 xlg:!duration-0">sign up</a>
+                                <a href="<?= wp_login_url(); ?>" class="btn btn--small btn--yellow xlg:!opacity-100 xlg:!translate-x-0 xlg:!delay-0 xlg:!duration-0">login</a>
+                                <a href="<?= wp_registration_url(); ?>" class="btn btn--small btn--red xlg:!opacity-100 xlg:!translate-x-0 xlg:!delay-0 xlg:!duration-0">sign up</a>
                             </li>
                         <? endif; ?>
                     </ul>

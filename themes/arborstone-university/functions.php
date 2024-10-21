@@ -113,6 +113,19 @@ function hideAdminbarForSubscribers() {
 }
 add_action('wp_loaded', 'hideAdminbarForSubscribers');
 
+// Customize Login page
+add_action('login_enqueue_scripts', 'theme_files');
+
+function ourHeaderUrl() {
+    return esc_url(site_url('/'));
+}
+add_filter('login_headerurl', 'ourHeaderUrl');
+
+function login_title() {
+    return get_bloginfo('name');
+}
+add_filter( 'login_headertitle', 'login_title' );
+
 ?>
 
 <? function pageBanner($args = NULL) {

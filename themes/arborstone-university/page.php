@@ -28,7 +28,7 @@
                                 $currentParent = get_the_ID();
                             }
                         ?>
-                        <li class="block bg-black-dark text-medium-1 text-white-light py-5 hover:bg-black-light"><a href="<?= get_the_permalink($currentParent); ?>"><?= get_the_title($currentParent); ?></a></li>
+                        <li class="page_item bg-black-dark text-medium-1 text-white-light hover:!bg-black-light"><a href="<?= get_the_permalink($currentParent); ?>"><?= get_the_title($currentParent); ?></a></li>
                         <? wp_list_pages(array('title_li'=> NULL, 'child_of'=> $currentParent)); ?>
                     </ul>
                 </nav>
