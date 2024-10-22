@@ -4,6 +4,7 @@ import loadNavMenu from './nav-menu'
 import overlayMask from './overlay-mask'
 import swiperSection from './swiper-section'
 import loadSearching from './searching'
+import notesList from './notesList'
 
 window.onload = () => {
 
@@ -15,6 +16,8 @@ window.onload = () => {
     loadNavMenu()
     // load searching
     loadSearching()
+    // load notes list
+    notesList()
 
     // init alpinejs
     Alpine.start()

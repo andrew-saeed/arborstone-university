@@ -253,6 +253,14 @@ main {
 
   &--small {
     @apply text-base-1 leading-base-1 font-bold py-1 px-4;
+
+    &.with-icon {
+      @apply flex items-center gap-2;
+
+      svg {
+        @apply w-[1.4rem];
+      }
+    }
   }
 }
 #start-search-btn {
@@ -323,6 +331,28 @@ main {
 
       #no-result {
         @apply text-large leading-large text-white-dark font-bold capitalize mt-8;
+      }
+    }
+  }
+}
+#notes-list {
+
+  li {
+    @apply transition-[max-height] duration-300 ease-in-out overflow-hidden;
+
+    input {
+      @apply float-left w-full bg-white-dark text-medium-2 leading-medium-2 font-bold capitalize rounded-lg my-4 p-2;
+    }
+    textarea {
+      @apply w-full bg-white-dark text-base-2 leading-base-2 rounded-lg p-2 resize-none;
+    }
+    .btn {
+      @apply float-right;
+    }
+
+    @media screen and (min-width: 768px){
+      input {
+        @apply w-1/2 mt-0;
       }
     }
   }
