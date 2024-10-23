@@ -109,6 +109,7 @@ a:not(.btn):hover {
     @apply no-underline;
   }
 }
+[x-cloak] { display: none !important; }
 
 /* Theme Components */
 #page-banner {
@@ -340,14 +341,36 @@ main {
   li {
     @apply transition-[max-height] duration-300 ease-in-out overflow-hidden;
 
+    .note-box {
+      @apply pb-20;
+    }
+
     input {
-      @apply float-left w-full bg-white-dark text-medium-2 leading-medium-2 font-bold capitalize rounded-lg my-4 p-2;
+      @apply float-left w-full text-medium-2 leading-medium-2 bg-white-dark font-bold capitalize border border-black-dark rounded-lg my-4 px-4 py-2;
+
+      &:read-only {
+        @apply bg-white-light px-0 border-none rounded-none;
+      }
     }
     textarea {
-      @apply w-full bg-white-dark text-base-2 leading-base-2 rounded-lg p-2 resize-none;
+      @apply w-full bg-white-dark text-base-2 leading-base-2 border border-black-dark rounded-lg px-4 py-2 resize-none;
+
+      &:read-only {
+        @apply bg-white-light;
+      }
     }
-    .btn {
+    .top-btns {
       @apply float-right;
+    }
+    .footer-btns > .btn > svg {
+      @apply animate-spin;
+      
+      path:first-of-type {
+        @apply fill-red;
+      }
+      path:last-of-type {
+        @apply fill-white-light;
+      }
     }
 
     @media screen and (min-width: 768px){
