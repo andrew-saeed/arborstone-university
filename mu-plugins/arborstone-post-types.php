@@ -54,7 +54,7 @@ function arborstone_post_types() {
     ));
 
     register_post_type('note', array(
-        'public' => false,
+        'public' => true,
         'show_ui' => true,
         'supports' => array('title', 'editor'),
         'show_in_rest' => true,

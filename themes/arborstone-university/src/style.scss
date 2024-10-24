@@ -228,6 +228,12 @@ main {
 
   &--blue {
     @apply bg-blue-dark text-white-light hover:bg-blue-light;
+
+    svg {
+      path {
+        @apply fill-white-light;
+      }
+    }
   }
 
   &--yellow {
@@ -246,6 +252,13 @@ main {
 
   &--large {
     @apply text-medium-2 leading-medium-2 tracking-wider font-black py-4 px-9;
+
+    &.with-icon {
+
+      svg {
+        @apply w-[2.5rem];
+      }
+    }
   }
 
   &--medium {
@@ -256,12 +269,15 @@ main {
     @apply text-base-1 leading-base-1 font-bold py-1 px-4;
 
     &.with-icon {
-      @apply flex items-center gap-2;
 
       svg {
         @apply w-[1.4rem];
       }
     }
+  }
+
+  &.with-icon {
+    @apply flex items-center gap-2;
   }
 }
 #start-search-btn {
@@ -346,14 +362,14 @@ main {
     }
 
     input {
-      @apply float-left w-full text-medium-2 leading-medium-2 bg-white-dark font-bold capitalize border border-black-dark rounded-lg my-4 px-4 py-2;
+      @apply float-left w-full text-medium-2 leading-medium-2 bg-white-dark font-bold capitalize border border-black-dark rounded-lg my-4 px-4 py-2 transition duration-700 ease-in-out;
 
       &:read-only {
         @apply bg-white-light px-0 border-none rounded-none;
       }
     }
     textarea {
-      @apply w-full bg-white-dark text-base-2 leading-base-2 border border-black-dark rounded-lg px-4 py-2 resize-none;
+      @apply w-full bg-white-dark text-base-2 leading-base-2 border border-black-dark rounded-lg px-4 py-2 resize-none transition duration-700 ease-in-out;
 
       &:read-only {
         @apply bg-white-light;
@@ -380,8 +396,38 @@ main {
     }
   }
 }
+#create-new-note {
+  @apply mb-12;
+}
+.modal {
+  @apply fixed top-0 bottom-0 left-0 right-0 z-50;
+  @apply flex justify-center items-center;
+  @apply bg-black-dim;
 
-/* Handle Wordpress Dynamic Classes */
+  &__box {
+    @apply max-w-screen-sm bg-white-light px-4 rounded-lg py-8 mx-auto space-y-12;
+
+    &__header {
+      @apply text-large leading-large text-black-light font-black;
+    }
+
+    &__body {
+      @apply space-y-4;
+
+      input {
+        @apply w-full bg-white-dark text-base-2 leading-base-2 placeholder:font-thin placeholder:text-black-dark placeholder:text-base-2 placeholder:capitalize rounded-lg px-4 py-2;
+      }
+  
+      textarea {
+        @apply w-full bg-white-dark text-base-2 leading-base-2 placeholder:font-thin placeholder:text-black-dark placeholder:text-base-2 placeholder:capitalize rounded-lg px-4 py-2 resize-none;
+      }
+    }
+
+    &__footer {
+      @apply flex justify-end gap-4;
+    }
+  }
+}
 #side-nav {
 
   .page_item {

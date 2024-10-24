@@ -126,6 +126,16 @@ function login_title() {
 }
 add_filter( 'login_headertitle', 'login_title' );
 
+// note rest api
+function add_author_filter_to_rest_api( $args, $request ) {
+    if ( isset( $request['author'] ) ) {
+        $args['author'] = sanitize_text_field( $request['author'] );
+    }
+    return $args;
+}
+
+add_filter( 'rest_note_query', 'add_author_filter_to_rest_api', 10, 2 );
+
 ?>
 
 <? function pageBanner($args = NULL) {

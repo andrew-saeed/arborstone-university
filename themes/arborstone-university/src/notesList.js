@@ -1,8 +1,52 @@
 import Alpine from "alpinejs"
 
 export default () => {
-    Alpine.data('note', () => ({
-        currentId: null,
+    Alpine.store('notesStore', {
+        collection: [],
+        formatNote(note) {
+            return {
+                id: note.id,
+                title: note.title.rendered,
+                content: note.content.rendered.replace(/<[^>]*>/g, '')
+            }
+        },
+        async getUserNotes(authorid) {
+            const data = await (await fetch(`http://localhost:10003/wp-json/wp/v2/note/?author=${authorid}`, {
+                method: 'GET',
+                headers: {
+                    'X-WP-Nonce': document.body.dataset.nonce
+                }
+            })).json()
+
+            this.collection = data.map((item) => {
+                return this.formatNote(item)
+            })
+        },
+        addNewNote(note) {
+            this.collection = [this.formatNote(note), ...this.collection]
+        },
+        updateNote(note) {
+            const formatedNote = this.formatNote(note)
+            this.collection = this.collection.map((item) => {
+                return item.id === formatedNote.id ? formatedNote : item
+            })
+        },
+        deleteNote(deletedNoteId) {
+            this.collection = this.collection.filter((item) => {
+                return `${item.id}` !== `${deletedNoteId}`
+            })
+        }
+    })
+
+    Alpine.data('notesList', () => ({
+        init() {
+            const authorid = this.$el.dataset.authorid
+            Alpine.store('notesStore').getUserNotes(authorid)
+        }
+    }))
+
+    Alpine.data('noteItem', () => ({
+        itemId: null,
         itemInputText: null,
         itemTextArea: null,
         editMode: false,
@@ -10,12 +54,19 @@ export default () => {
         currentBody: '',
         processing: false,
         init() {
-            this.currentId = this.$el.dataset.id
             this.$root.style.maxHeight = `${this.$root.scrollHeight + 80}px`
 
             this.$nextTick(() => {
                 this.itemInputText = this.$root.querySelector('input')
                 this.itemTextArea = this.$root.querySelector('textarea')
+                this.itemId = this.$root.dataset.id
+            })
+
+            this.$root.addEventListener('transitionend', () => {
+                if(this.$root.style.maxHeight === '0px') {
+                    
+                    Alpine.store('notesStore').deleteNote(this.itemId)
+                }
             })
         },
         async deleteItem() {
@@ -24,7 +75,7 @@ export default () => {
             try {
                 this.processing = true
 
-                await fetch(`http://localhost:10003/wp-json/wp/v2/note/${this.currentId}`, {
+                await fetch(`http://localhost:10003/wp-json/wp/v2/note/${this.itemId}`, {
                     method: 'DELETE', 
                     headers: {
                         'X-WP-Nonce': document.body.dataset.nonce
@@ -35,7 +86,7 @@ export default () => {
 
                 this.processing = false
             } catch(err) {
-                console.log('error')
+                console.log(err)
                 this.processing = false
             }
         },
@@ -64,7 +115,7 @@ export default () => {
             try {
                 this.processing = true
 
-                await fetch(`http://localhost:10003/wp-json/wp/v2/note/${this.currentId}`, {
+                const updatedNote = await (await fetch(`http://localhost:10003/wp-json/wp/v2/note/${this.itemId}`, {
                     method: 'POST',
                     body: JSON.stringify({
                         title: this.itemInputText.value,
@@ -74,16 +125,52 @@ export default () => {
                         'X-WP-Nonce': document.body.dataset.nonce,
                         'Content-Type': 'application/json'
                     }
-                })
+                })).json()
 
                 this.currentTitle = this.itemInputText.value 
                 this.currentBody = this.itemTextArea.value
 
+                this.toggleEdit()
+                Alpine.store('notesStore').updateNote(updatedNote)
                 this.processing = false
             } catch(err) {
-                console.log('error')
+                console.log(err)
                 this.processing = false
             }
         }
     }));
+
+    Alpine.data('createNewNote', () => ({
+        open: false,
+        noteTitle: '',
+        noteContent: '',
+        toggleModal() {
+            this.open = !this.open
+            if(this.open) {
+                this.noteTitle = ''
+                this.noteContent = ''
+            }
+        },
+        async save() {
+            try {
+                const input = await (await fetch('http://localhost:10003/wp-json/wp/v2/note', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        title: this.noteTitle,
+                        content: this.noteContent,
+                        status: 'publish'
+                    }),
+                    headers: {
+                        'X-WP-Nonce': document.body.dataset.nonce,
+                        'Content-Type': 'application/json'
+                    }
+                })).json()
+
+                this.toggleModal()
+                Alpine.store('notesStore').addNewNote(input)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+    }))
 }

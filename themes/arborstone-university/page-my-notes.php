@@ -14,17 +14,35 @@
 
             <div id="main-content">
                 
-                <ul id="notes-list">
-                    <? 
-                        $myNotes = new WP_Query(array(
-                            'post_type' => 'note',
-                            'posts_per_page' => -1,
-                            'author' => get_current_user_id()
-                        )); 
-                        
-                        while($myNotes->have_posts()): $myNotes->the_post(); 
-                    ?>
-                        <li data-id="<?= get_the_ID() ?>" x-data="note">
+                <section id="create-new-note" x-data="createNewNote">
+                    <button class="btn btn--small btn--blue with-icon" @click="toggleModal">
+                        <svg width="100%" height="100%" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="#000000" fill-rule="evenodd" d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm14 .069a1 1 0 01-1 1h-2.931V14a1 1 0 11-2 0v-2.931H6a1 1 0 110-2h3.069V6a1 1 0 112 0v3.069H14a1 1 0 011 1z"></path> </g></svg>
+                        <span>create new</span>
+                    </button>
+                    <template x-teleport="body">
+                        <div class="modal" x-show="open" x-transition>
+                            <div class="modal__box">
+                                <div class="modal__box__header">
+                                    New Note
+                                </div>
+                                <div class="modal__box__body">
+                                    <input type="text" name="title" id="title" placeholder="note title" x-model="noteTitle">
+                                    <textarea name="content" id="content" placeholder="note content" rows="4" x-model="noteContent"></textarea>
+                                </div>
+                                <div class="modal__box__footer">
+                                    <button class="btn btn--small btn--blue" @click="save">save</button>
+                                    <button class="btn btn--small btn--blue" @click="toggleModal">close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </section>
+
+                <ul id="notes-list" data-authorid="<?= get_current_user_id() ?>" x-data="notesList">
+
+                    <template x-for="note in $store.notesStore.collection" :key="note.id">
+
+                        <li :data-id="note.id" x-data="noteItem">
                             <div class="note-box">
                                 <button class="top-btns btn btn--small btn--outline with-icon" @click="deleteItem">
                                     <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
@@ -35,8 +53,8 @@
                                     <svg x-show="editMode" width="100%" height="100%" fill="#000000" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>cancel</title> <path d="M10.771 8.518c-1.144 0.215-2.83 2.171-2.086 2.915l4.573 4.571-4.573 4.571c-0.915 0.915 1.829 3.656 2.744 2.742l4.573-4.571 4.573 4.571c0.915 0.915 3.658-1.829 2.744-2.742l-4.573-4.571 4.573-4.571c0.915-0.915-1.829-3.656-2.744-2.742l-4.573 4.571-4.573-4.571c-0.173-0.171-0.394-0.223-0.657-0.173v0zM16 1c-8.285 0-15 6.716-15 15s6.715 15 15 15 15-6.716 15-15-6.715-15-15-15zM16 4.75c6.213 0 11.25 5.037 11.25 11.25s-5.037 11.25-11.25 11.25-11.25-5.037-11.25-11.25c0.001-6.213 5.037-11.25 11.25-11.25z"></path> </g></svg>
                                     <span x-text="editMode? 'cancel' : 'edit'"></span>
                                 </button>
-                                <input readonly name="title" id="title" type="text" value="<?= esc_attr(get_the_title()); ?>">
-                                <textarea readonly name="content" id="content" rows="6"><?= esc_attr(wp_strip_all_tags(get_the_content())); ?></textarea>
+                                <input readonly name="title" id="title" type="text" :value="note.title">
+                                <textarea readonly name="content" id="content" rows="6" :value="note.content"></textarea>
                                 <div class="footer-btns" x-cloak x-show="editMode">
                                     <button class="btn btn--small btn--blue with-icon right-left-margin-1" @click="updateItem">
                                         <svg x-show="processing" aria-hidden="true" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +66,7 @@
                                 </div>
                             </div>
                         </li>
-                    <? endwhile; ?>
+                    </template>
                 </ul>
             </div>
         </div>
