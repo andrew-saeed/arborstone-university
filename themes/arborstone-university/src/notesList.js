@@ -130,9 +130,9 @@ export default () => {
                 this.currentTitle = this.itemInputText.value 
                 this.currentBody = this.itemTextArea.value
 
+                this.processing = false
                 this.toggleEdit()
                 Alpine.store('notesStore').updateNote(updatedNote)
-                this.processing = false
             } catch(err) {
                 console.log(err)
                 this.processing = false
