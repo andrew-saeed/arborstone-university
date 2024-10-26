@@ -137,7 +137,18 @@ function add_author_filter_to_rest_api( $args, $request ) {
 add_filter( 'rest_note_query', 'add_author_filter_to_rest_api', 10, 2 );
 
 // adjust posts before saving
-function adjust_posts_before_saving($data) {
+function adjust_posts_before_saving($data, $request) {
+    if($data['post_type'] == 'note') {
+        if(count_user_posts(get_current_user_id(), 'note') > 5 AND !$request['ID']) {
+            wp_send_json_error([
+                'message' => 'you have reached your notes limit'
+            ], 403);
+        }
+
+        $data['post_title'] = sanitize_text_field($data['post_title']);
+        $data['post_content'] = sanitize_textarea_field($data['post_content']);
+    }
+
     if($data['post_type'] == 'note' AND $data['post_status'] != 'trash') {
         $data['post_status'] = 'private';
     }
@@ -145,7 +156,7 @@ function adjust_posts_before_saving($data) {
     return $data;
 }
 
-add_filter('wp_insert_post_data', 'adjust_posts_before_saving');
+add_filter('wp_insert_post_data', 'adjust_posts_before_saving', 10, 2);
 
 ?>
 

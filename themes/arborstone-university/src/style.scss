@@ -110,6 +110,40 @@ a:not(.btn):hover {
   }
 }
 [x-cloak] { display: none !important; }
+.animate__animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+/* Animation */
+@keyframes shakeX {
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+.animate__shakeX {
+  -webkit-animation-name: shakeX;
+  animation-name: shakeX;
+}
 
 /* Theme Components */
 #page-banner {
@@ -420,6 +454,10 @@ main {
   
       textarea {
         @apply w-full bg-white-dark text-base-2 leading-base-2 placeholder:font-thin placeholder:text-black-dark placeholder:text-base-2 placeholder:capitalize rounded-lg px-4 py-2 resize-none;
+      }
+
+      p {
+        @apply text-base leading-base text-red text-center capitalize font-bold;
       }
     }
 

@@ -6,7 +6,7 @@ export default () => {
         formatNote(note) {
             return {
                 id: note.id,
-                title: note.title.rendered,
+                title: note.title.rendered.replace('Private:', ''),
                 content: note.content.rendered.replace(/<[^>]*>/g, '')
             }
         },
@@ -75,12 +75,18 @@ export default () => {
             try {
                 this.processing = true
 
-                await fetch(`http://localhost:10003/wp-json/wp/v2/note/${this.itemId}`, {
+                const response = await fetch(`http://localhost:10003/wp-json/wp/v2/note/${this.itemId}`, {
                     method: 'DELETE', 
                     headers: {
                         'X-WP-Nonce': document.body.dataset.nonce
                     }
                 })
+
+                if(![200, 201].includes(response.status)) {
+                    const responseData = await response.json()
+                    const message = responseData.data?.message || responseData.message
+                    throw new Error(message)
+                }
 
                 this.$root.style.maxHeight = '0px'
 
@@ -115,7 +121,7 @@ export default () => {
             try {
                 this.processing = true
 
-                const updatedNote = await (await fetch(`http://localhost:10003/wp-json/wp/v2/note/${this.itemId}`, {
+                const response = await fetch(`http://localhost:10003/wp-json/wp/v2/note/${this.itemId}`, {
                     method: 'POST',
                     body: JSON.stringify({
                         title: this.itemInputText.value,
@@ -125,7 +131,15 @@ export default () => {
                         'X-WP-Nonce': document.body.dataset.nonce,
                         'Content-Type': 'application/json'
                     }
-                })).json()
+                })
+
+                if(![200, 201].includes(response.status)) {
+                    const responseData = await response.json()
+                    const message = responseData.data?.message || responseData.message
+                    throw new Error(message)
+                }
+
+                const updatedNote = await response.json()
 
                 this.currentTitle = this.itemInputText.value 
                 this.currentBody = this.itemTextArea.value
@@ -144,16 +158,20 @@ export default () => {
         open: false,
         noteTitle: '',
         noteContent: '',
+        error: null,
         toggleModal() {
             this.open = !this.open
             if(this.open) {
                 this.noteTitle = ''
                 this.noteContent = ''
+                this.error = null
             }
         },
         async save() {
+            if(this.error) return
+
             try {
-                const input = await (await fetch('http://localhost:10003/wp-json/wp/v2/note', {
+                const response = await fetch('http://localhost:10003/wp-json/wp/v2/note', {
                     method: 'POST',
                     body: JSON.stringify({
                         title: this.noteTitle,
@@ -164,12 +182,20 @@ export default () => {
                         'X-WP-Nonce': document.body.dataset.nonce,
                         'Content-Type': 'application/json'
                     }
-                })).json()
+                })
+                
+                if(![200, 201].includes(response.status)) {
+                    const responseData = await response.json()
+                    const message = responseData.data?.message || responseData.message
+                    throw new Error(message)
+                }
+
+                const newNote = await response.json()
 
                 this.toggleModal()
-                Alpine.store('notesStore').addNewNote(input)
+                Alpine.store('notesStore').addNewNote(newNote)
             } catch(err) {
-                console.log(err)
+                this.error = err.message
             }
         }
     }))

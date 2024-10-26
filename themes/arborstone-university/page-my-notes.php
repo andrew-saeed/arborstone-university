@@ -28,6 +28,7 @@
                                 <div class="modal__box__body">
                                     <input type="text" name="title" id="title" placeholder="note title" x-model="noteTitle">
                                     <textarea name="content" id="content" placeholder="note content" rows="4" x-model="noteContent"></textarea>
+                                    <p class="animate__animated animate__shakeX" x-show="error" x-text="`*${error}`"></p>
                                 </div>
                                 <div class="modal__box__footer">
                                     <button class="btn btn--small btn--blue" @click="save">save</button>
