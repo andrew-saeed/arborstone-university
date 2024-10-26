@@ -11,7 +11,7 @@ export default () => {
             }
         },
         async getUserNotes(authorid) {
-            const data = await (await fetch(`http://localhost:10003/wp-json/wp/v2/note/?author=${authorid}`, {
+            const data = await (await fetch(`http://localhost:10003/wp-json/wp/v2/note/?author=${authorid}&status=private`, {
                 method: 'GET',
                 headers: {
                     'X-WP-Nonce': document.body.dataset.nonce
@@ -158,7 +158,7 @@ export default () => {
                     body: JSON.stringify({
                         title: this.noteTitle,
                         content: this.noteContent,
-                        status: 'publish'
+                        status: 'private'
                     }),
                     headers: {
                         'X-WP-Nonce': document.body.dataset.nonce,

@@ -136,6 +136,17 @@ function add_author_filter_to_rest_api( $args, $request ) {
 
 add_filter( 'rest_note_query', 'add_author_filter_to_rest_api', 10, 2 );
 
+// adjust posts before saving
+function adjust_posts_before_saving($data) {
+    if($data['post_type'] == 'note' AND $data['post_status'] != 'trash') {
+        $data['post_status'] = 'private';
+    }
+
+    return $data;
+}
+
+add_filter('wp_insert_post_data', 'adjust_posts_before_saving');
+
 ?>
 
 <? function pageBanner($args = NULL) {

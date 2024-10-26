@@ -56,7 +56,7 @@ function arborstone_post_types() {
     register_post_type('note', array(
         'capability_type' => 'note',
         'map_meta_cap' => true,
-        'public' => true,
+        'public' => false,
         'show_ui' => true,
         'supports' => array('title', 'editor'),
         'show_in_rest' => true,
