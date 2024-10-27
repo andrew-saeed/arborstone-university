@@ -70,6 +70,22 @@ function arborstone_post_types() {
         ),
         'menu_icon' => 'dashicons-welcome-write-blog'
     ));
+
+    register_post_type('like', array(
+        'public' => false,
+        'show_ui' => true,
+        'supports' => array('title'),
+        'show_in_rest' => true,
+        'labels' => array(
+            'name' => 'Likes',
+            'add_new' => 'Add New Like',
+            'add_new_item' => 'Add New Like',
+            'edit_item' => 'Edit Like',
+            'all_items' => 'All Likes',
+            'singular_name' => 'Like'
+        ),
+        'menu_icon' => 'dashicons-heart'
+    ));
 }
 
 add_action('init', 'arborstone_post_types');

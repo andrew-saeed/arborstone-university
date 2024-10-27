@@ -5,6 +5,7 @@ import overlayMask from './overlay-mask'
 import swiperSection from './swiper-section'
 import loadSearching from './searching'
 import notesList from './notesList'
+import professorLike from './professor-like'
 
 window.onload = () => {
 
@@ -18,6 +19,8 @@ window.onload = () => {
     loadSearching()
     // load notes list
     notesList()
+    // load professor like
+    professorLike()
 
     // init alpinejs
     Alpine.start()
