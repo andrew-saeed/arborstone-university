@@ -3,6 +3,7 @@
 define('HMR_HOST', 'http://localhost:4200/wp-content/themes/arborstone-university/');
 
 require get_theme_file_path('inc/search-route.php');
+require get_theme_file_path('inc/like-route.php');
 
 function theme_files() {
 
