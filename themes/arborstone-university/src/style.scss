@@ -537,3 +537,14 @@ main {
     }
   }
 }
+
+/* Word Count */
+#post-statistics {
+  h3 {
+    @apply text-medium-2 leading-medium-2 text-black-light font-black;
+  }
+
+  p {
+    @apply text-base leading-base text-black-dark;
+  }
+}

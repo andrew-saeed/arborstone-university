@@ -57,9 +57,12 @@ export default {
 			'xxlarge': '5rem'//80px
 		},
 		lineHeight: {
+			'sm': '1.375rem', //22px
+			'sm-1': '1.5rem', //24px,
 			'base': '1.625rem', //26px
 			'base-1': '1.75rem', //28px
 			'base-2': '1.875rem', //28px
+			'medium': '2rem',
 			'medium-1': '2.125rem', //34px
 			'medium-2': '2.375rem', //38px
 			'large': '2.875rem', //46px
