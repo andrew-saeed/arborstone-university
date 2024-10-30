@@ -1,0 +1,11 @@
+h1 {
+    margin-bottom: 20px!important;
+}
+.wf_form-fields-box {
+    display: flex;
+    margin-bottom: 20px;
+
+    textarea {
+        flex: 1;
+    }
+}
