@@ -8,6 +8,8 @@
     Author URI: https://andrewsaeed.dev
 */
 
+if( !defined('ABSPATH') ) exit;
+
 class WordCount {
 
     function __construct() {

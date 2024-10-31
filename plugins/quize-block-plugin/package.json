@@ -1,0 +1,21 @@
+{
+  "name": "quize-block-plugin",
+  "version": "0.0.1",
+  "description": "Wordpress quize block plugin",
+  "main": "./src/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "keywords": [
+    "Quize",
+    "Wordpress Block",
+    "Wordpress Plugin"
+  ],
+  "author": "Andrew Saeed",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^30.4.0"
+  }
+}
