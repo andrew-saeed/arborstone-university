@@ -1,47 +1,86 @@
+import './index.scss'
+import {TextControl, Flex, FlexBlock, FlexItem, Icon, Button} from '@wordpress/components'
+
+(() => {
+    let locked = false
+
+    wp.data.subscribe(() => {
+        const results = wp.data.select('core/block-editor').getBlocks().filter((block) => {
+            return block.name === 'quize/quize' && block.attributes.correctAnswer === null
+        })
+
+        if(results.length && locked == false) {
+            locked = true
+            wp.data.dispatch('core/editor').lockPostSaving('noanswer')
+        }
+
+        if(!results.length && locked) {
+            locked = false
+            wp.data.dispatch('core/editor').unlockPostSaving('noanswer')
+        }
+    })
+})()
+
 wp.blocks.registerBlockType('quize/quize', {
     title: 'Quize',
     icon: 'smiley',
     category: 'common',
     attributes: {
         question: {type: 'string'},
-        answer1: {type: 'string'},
-        answer2: {type: 'string'},
-        answer3: {type: 'string'},
-        answer4: {type: 'string'}
+        answers: {type: 'array', default: []},
+        correctAnswer: {type: 'number', default: null}
     },
     edit(props) {
-        const updateQuestion = (e) => {
-            props.setAttributes({question: e.target.value})
-        }
-        const updateAnswer1 = (e) => {
-            props.setAttributes({answer1: e.target.value})
-        }
-        const updateAnswer2 = (e) => {
-            props.setAttributes({answer2: e.target.value})
-        }
-        const updateAnswer3 = (e) => {
-            props.setAttributes({answer3: e.target.value})
-        }
-        const updateAnswer4 = (e) => {
-            props.setAttributes({answer4: e.target.value})
+        const updateQuestion = (value) => {
+            props.setAttributes({question: value})
         }
 
-        return <div>
-            <h4><input type="text" placeholder="question" value={props.attributes.question} onChange={updateQuestion} /></h4>
+        const addNewAnswer = () => {
+            props.setAttributes({answers: [...props.attributes.answers, '']})
+        }
+
+        const deleteAnAnswer = (answerToDeleteindex) => {
+            const newAnswers = props.attributes.answers.filter( (_, index) => index != answerToDeleteindex )
+            props.setAttributes({answers: newAnswers})
+
+            if(props.attributes.correctAnswer === answerToDeleteindex) {
+                props.setAttributes({correctAnswer: null})
+            }
+        }
+
+        const setCorrectAnswer = (index) => {
+            props.setAttributes({correctAnswer: index})   
+        }
+
+        return <div className="quize-edit-block">
+            <TextControl className="question" label="question" placeholder="question" value={props.attributes.question} onChange={updateQuestion} />
+            <p>Answers:</p>
             <ul>
-                <li>
-                    <input type="text" placeholder="answer 1" value={props.attributes.answer1} onChange={updateAnswer1} />
-                </li>
-                <li>
-                    <input type="text" placeholder="answer 2" value={props.attributes.answer2} onChange={updateAnswer2} />
-                </li>
-                <li>
-                    <input type="text" placeholder="answer 3" value={props.attributes.answer3} onChange={updateAnswer3} />
-                </li>
-                <li>
-                    <input type="text" placeholder="answer 4" value={props.attributes.answer4} onChange={updateAnswer4} />
-                </li>
+                {
+                    props.attributes.answers.map( (answer, index) => {
+                        return <li key={index}>
+                            <Flex>
+                                <FlexBlock>
+                                    <TextControl className="answer" placeholder="answer" value={answer} onChange={ newValue => {
+                                        const newAnswers = [...props.attributes.answers]
+                                        newAnswers[index] = newValue
+                                        props.setAttributes({answers: newAnswers})
+                                    } } />
+                                </FlexBlock>
+                                <FlexItem>
+                                    <Icon onClick={() => setCorrectAnswer(index)} className="mark-as-correct" icon={props.attributes.correctAnswer === index ? 'star-filled' : 'star-empty'} />
+                                </FlexItem>
+                                <FlexItem>
+                                    <Button onClick={()=>deleteAnAnswer(index)}>Delete</Button>
+                                </FlexItem>
+                            </Flex>
+                        </li>
+                    })
+                }
             </ul>
+            <p>
+                <Button onClick={()=>addNewAnswer()} isPrimary>Add New Answer</Button>
+            </p>
         </div>
     },
     save(props) {

@@ -16,24 +16,20 @@ class Quize {
     }
 
     function adminAssets() {
-        wp_register_script('quizeBlock', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element'));
+        wp_register_style('quizeBlockStyle', plugin_dir_url(__FILE__) . 'build/index.css');
+        wp_register_script('quizeBlockScript', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element', 'wp-editor'));
         register_block_type('quize/quize', array(
-            'editor_script' => 'quizeBlock',
+            'editor_style' => 'quizeBlockStyle',
+            'editor_script' => 'quizeBlockScript',
             'render_callback' => array($this, 'theHTML')
         ));
     }
 
-    function theHTML($attr) { 
+    function theHTML($attr) {
+        wp_enqueue_script('quizeFrontScript', plugin_dir_url(__FILE__) . 'build/frontend.js', array('wp-element'));
+        wp_enqueue_style('quizeFrontStyle', plugin_dir_url(__FILE__) . 'build/frontend.css');
         ob_start(); ?>
-            <div>
-                <h4><?= $attr['question']; ?></h4>
-                <ul>
-                    <li><?= $attr['answer1']; ?></li>
-                    <li><?= $attr['answer2']; ?></li>
-                    <li><?= $attr['answer3']; ?></li>
-                    <li><?= $attr['answer4']; ?></li>
-                </ul>
-            </div>
+            <div class="quize-box"><pre><?= wp_json_encode($attr); ?></pre></div>
         <? return ob_get_clean();
     }
 }

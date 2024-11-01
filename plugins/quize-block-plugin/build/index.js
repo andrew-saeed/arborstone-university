@@ -2,13 +2,35 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "react/jsx-runtime":
-/*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
-  \**********************************/
+/***/ "./src/index.scss":
+/*!************************!*\
+  !*** ./src/index.scss ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
 /***/ ((module) => {
 
-module.exports = window["ReactJSXRuntime"];
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
 
 /***/ })
 
@@ -58,8 +80,28 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.scss */ "./src/index.scss");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 
+
+
+(() => {
+  let locked = false;
+  wp.data.subscribe(() => {
+    const results = wp.data.select('core/block-editor').getBlocks().filter(block => {
+      return block.name === 'quize/quize' && block.attributes.correctAnswer === null;
+    });
+    if (results.length && locked == false) {
+      locked = true;
+      wp.data.dispatch('core/editor').lockPostSaving('noanswer');
+    }
+    if (!results.length && locked) {
+      locked = false;
+      wp.data.dispatch('core/editor').unlockPostSaving('noanswer');
+    }
+  });
+})();
 wp.blocks.registerBlockType('quize/quize', {
   title: 'Quize',
   icon: 'smiley',
@@ -68,85 +110,75 @@ wp.blocks.registerBlockType('quize/quize', {
     question: {
       type: 'string'
     },
-    answer1: {
-      type: 'string'
+    answers: {
+      type: 'array',
+      default: []
     },
-    answer2: {
-      type: 'string'
-    },
-    answer3: {
-      type: 'string'
-    },
-    answer4: {
-      type: 'string'
+    correctAnswer: {
+      type: 'number',
+      default: null
     }
   },
   edit(props) {
-    const updateQuestion = e => {
+    const updateQuestion = value => {
       props.setAttributes({
-        question: e.target.value
+        question: value
       });
     };
-    const updateAnswer1 = e => {
+    const addNewAnswer = () => {
       props.setAttributes({
-        answer1: e.target.value
+        answers: [...props.attributes.answers, '']
       });
     };
-    const updateAnswer2 = e => {
+    const deleteAnAnswer = answerToDeleteindex => {
+      const newAnswers = props.attributes.answers.filter((_, index) => index != answerToDeleteindex);
       props.setAttributes({
-        answer2: e.target.value
+        answers: newAnswers
+      });
+      if (props.attributes.correctAnswer === answerToDeleteindex) {
+        props.setAttributes({
+          correctAnswer: null
+        });
+      }
+    };
+    const setCorrectAnswer = index => {
+      props.setAttributes({
+        correctAnswer: index
       });
     };
-    const updateAnswer3 = e => {
-      props.setAttributes({
-        answer3: e.target.value
-      });
-    };
-    const updateAnswer4 = e => {
-      props.setAttributes({
-        answer4: e.target.value
-      });
-    };
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h4", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-          type: "text",
-          placeholder: "question",
-          value: props.attributes.question,
-          onChange: updateQuestion
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-            type: "text",
-            placeholder: "answer 1",
-            value: props.attributes.answer1,
-            onChange: updateAnswer1
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-            type: "text",
-            placeholder: "answer 2",
-            value: props.attributes.answer2,
-            onChange: updateAnswer2
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-            type: "text",
-            placeholder: "answer 3",
-            value: props.attributes.answer3,
-            onChange: updateAnswer3
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-            type: "text",
-            placeholder: "answer 4",
-            value: props.attributes.answer4,
-            onChange: updateAnswer4
-          })
-        })]
-      })]
-    });
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "quize-edit-block"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      className: "question",
+      label: "question",
+      placeholder: "question",
+      value: props.attributes.question,
+      onChange: updateQuestion
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Answers:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, props.attributes.answers.map((answer, index) => {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+        key: index
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexBlock, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+        className: "answer",
+        placeholder: "answer",
+        value: answer,
+        onChange: newValue => {
+          const newAnswers = [...props.attributes.answers];
+          newAnswers[index] = newValue;
+          props.setAttributes({
+            answers: newAnswers
+          });
+        }
+      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
+        onClick: () => setCorrectAnswer(index),
+        className: "mark-as-correct",
+        icon: props.attributes.correctAnswer === index ? 'star-filled' : 'star-empty'
+      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        onClick: () => deleteAnAnswer(index)
+      }, "Delete"))));
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      onClick: () => addNewAnswer(),
+      isPrimary: true
+    }, "Add New Answer")));
   },
   save(props) {
     return null;
