@@ -1,0 +1,53 @@
+/* Links */
+.links {
+    text-transform: capitalize;
+    color: #0d4474;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Select Featured Professor */
+#professor-id {
+    width: 100%;
+    font-size: 18px;
+    padding: 4px 8px;
+    margin-bottom: 12px;
+}
+
+/* Featured Professor */
+.featured-professor {
+    background-color: #eae6cf;
+
+    .featured-professor__box {
+
+        .content {
+            display: grid;
+            gap: 12px;
+
+            .image {
+                height: 450px;
+                background-size: cover;
+                background-position: center;
+            }
+
+            .text {
+                display: grid;
+                gap: 24px;
+                align-content: center;
+                padding: 18px;
+
+                .title {
+                    font-size: 42px;
+                }
+            }
+
+            @media screen and (min-width: 768px){
+                grid-template-columns: 256px 1fr;
+
+                .image {
+                    height: unset;
+                }
+            }
+        }
+    }
+}

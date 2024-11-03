@@ -548,3 +548,21 @@ main {
     @apply text-base leading-base text-black-dark;
   }
 }
+
+#mentioned-in {
+  background-color: var(--white-dark);
+  padding: 18px 12px;
+
+  p {
+    text-transform: capitalize;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .links {
+    text-transform: capitalize;
+    color: #0d4474;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
