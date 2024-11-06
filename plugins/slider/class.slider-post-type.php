@@ -23,6 +23,7 @@ class Slider_Post_Type {
             'hierarchical' => false,
             'menu_position' => 5,
             'has_archive' => false,
+            'show_in_menu' => false,
             'show_in_rest' => true,
             'menu_icon' => 'dashicons-images-alt2'
         ]);

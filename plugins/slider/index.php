@@ -13,6 +13,8 @@ if( !defined('ABSPATH') ) exit;
 class Slider {
     function __construct() {
         $this->define_constants();
+
+        add_action('admin_menu', [$this, 'add_menu']);
         
         require_once(SLIDER_PATH . 'class.slider-post-type.php');
         $slider_post_type = new Slider_Post_Type();
@@ -33,6 +35,50 @@ class Slider {
     }
 
     static function uninstall() {}
+
+    function add_menu() {
+        add_menu_page(
+            'Slider Options',
+            'Slider',
+            'manage_options',
+            'slider-admin',
+            [$this, 'slider_settings_page'],
+            'dashicons-images-alt2'
+        );
+
+        add_submenu_page(
+            'slider-admin',
+            'Settings',
+            'Settings',
+            'manage_options',
+            'slider-admin',
+            [$this, 'slider_settings_page'],
+        );
+
+        add_submenu_page(
+            'slider-admin',
+            'Manage Slides',
+            'Manage Slides',
+            'manage_options',
+            'edit.php?post_type=slider',
+            null,
+            null
+        );
+
+        add_submenu_page(
+            'slider-admin',
+            'Add New Slide',
+            'Add New Slide',
+            'manage_options',
+            'post-new.php?post_type=slider',
+            null,
+            null
+        );
+    }
+
+    function slider_settings_page() {
+        echo 'this is settings page';
+    }
 }
 
 register_activation_hook( __FILE__, ['Slider', 'activate'] );
