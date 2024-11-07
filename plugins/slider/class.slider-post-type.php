@@ -41,7 +41,7 @@ class Slider_Post_Type {
     }
 
     function add_inner_meta_boxes($post) {
-        require_once(SLIDER_PATH . 'view.slider.php');
+        require_once(SLIDER_PATH . 'view.slide-link-metabox.php');
     }
 
     function save_post($post_id) {

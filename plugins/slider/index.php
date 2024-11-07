@@ -18,6 +18,9 @@ class Slider {
         
         require_once(SLIDER_PATH . 'class.slider-post-type.php');
         $slider_post_type = new Slider_Post_Type();
+
+        require_once(SLIDER_PATH . 'class.slider-settings.php');
+        $slider_settings = new Slider_Settings();
     }
 
     function define_constants() {
@@ -77,7 +80,16 @@ class Slider {
     }
 
     function slider_settings_page() {
-        echo 'this is settings page';
+        if(!current_user_can('manage_options')) {
+            return;
+        }
+
+        if(isset($_GET['settings-updated'])) {
+            add_settings_error('slider_options', 'slider_message', 'Settings Saved', 'success');
+        }
+
+        settings_errors('slider_options');
+        require(SLIDER_PATH . 'page.settings.php');
     }
 }
 
