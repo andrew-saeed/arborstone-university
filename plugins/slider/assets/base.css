@@ -1,0 +1,8 @@
+.flexslider {
+    position: relative;
+    width: 350px!important;
+
+    .flex-control-nav {
+        bottom: 0;
+    }
+}

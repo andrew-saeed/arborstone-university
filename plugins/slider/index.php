@@ -21,11 +21,18 @@ class Slider {
 
         require_once(SLIDER_PATH . 'class.slider-settings.php');
         $slider_settings = new Slider_Settings();
+
+        require_once(SLIDER_PATH . 'class.slider-shortcode.php');
+        $slider_shortcode = new Slider_Shortcode();
+
+        add_action('wp_enqueue_scripts', [$this, 'register_scripts'], 999);
+        add_action('admin_enqueue_scripts', [$this, 'register_admin_scripts'], 999);
     }
 
     function define_constants() {
         define('SLIDER_PATH', plugin_dir_path(__FILE__));
         define('SLIDER_URL', plugin_dir_url(__FILE__));
+        define('SLIDER_VERSION', '0.0.1');
     }
 
     static function activate() {
@@ -90,6 +97,20 @@ class Slider {
 
         settings_errors('slider_options');
         require(SLIDER_PATH . 'page.settings.php');
+    }
+
+    function register_scripts() {
+        wp_register_script('main', SLIDER_URL . 'vendor/jquery.flexslider-min.js', ['jquery'], SLIDER_VERSION, true);
+        wp_register_script('settings', SLIDER_URL . 'vendor/flexslider.js', ['jquery'], SLIDER_VERSION, true);
+        wp_register_style('main-style', SLIDER_URL . 'vendor/flexslider.css', [], SLIDER_VERSION, 'all');
+        wp_register_style('base-style', SLIDER_URL . 'assets/base.css', [], SLIDER_VERSION, 'all');
+    }
+
+    function register_admin_scripts() {
+        global $typenow;
+        if($typenow == 'slider') {
+            wp_enqueue_style('admin-base-style', SLIDER_URL . 'assets/admin-base.css', [], SLIDER_VERSION, 'all');
+        }
     }
 }
 

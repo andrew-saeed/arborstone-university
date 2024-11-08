@@ -1,0 +1,7 @@
+.postbox {
+    background-color: green!important;
+    
+    .postbox-header, label {
+        color: yellowgreen!important;
+    }
+}

@@ -65,7 +65,7 @@ class Slider_Settings {
             'slider_page2',
             'slider_second_section',
             [
-                'items' => ['style 1', 'style 2'],
+                'items' => ['style-1', 'style-2'],
                 'label_for' => 'slider_style'
             ]
         );

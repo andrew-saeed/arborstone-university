@@ -37,7 +37,7 @@ function professorInfo($id) {
         </div>
     </div>
 
-    <? wp_reset_postdata();
-    return ob_get_clean();
+    <? return ob_get_clean();
     endwhile;
+    wp_reset_postdata();
 }
