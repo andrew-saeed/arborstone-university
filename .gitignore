@@ -3,6 +3,7 @@ node_modules
 build
 /index.php
 /themes/index.php
+/themes/twentytwentyfive
 /plugins/index.php
 /plugins/advanced-custom-fields
 /plugins/members

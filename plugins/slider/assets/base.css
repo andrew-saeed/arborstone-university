@@ -2,7 +2,25 @@
     position: relative;
     width: 350px!important;
 
-    .flex-control-nav {
-        bottom: 0;
+    li {
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 12px 0px;
+        }
+
+        .slider-description {
+
+            .subtitle {
+                margin-bottom: 4px;
+            }
+
+            a {
+                background-color: #283618;
+                color: #eae6cf;
+                padding: 4px 12px;
+                border-radius: 5px;
+            }
+        }
     }
 }
