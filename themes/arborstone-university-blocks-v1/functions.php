@@ -15,6 +15,48 @@ function theme_features() {
 }
 
 function theme_blocks() {
-    register_block_type_from_metadata(__DIR__ . '/build/footer');
+    wp_localize_script('wp-editor', 'themeData', ['path' => get_stylesheet_directory_uri()]);
+
     register_block_type_from_metadata(__DIR__ . '/build/header');
+    register_block_type_from_metadata(__DIR__ . '/build/banner');
+    register_block_type_from_metadata(__DIR__ . '/build/footer');
 }
+
+class JSXBlock {
+    private $name;
+    private $data;
+    private $renderCallback;
+
+    function __construct($name, $renderCallback = null, $data = null) {
+        $this->name = $name;
+        $this->data = $data;
+        $this->renderCallback = $renderCallback;
+        add_action('init', [$this, 'onInit']);
+    }
+  
+    function renderCallback($attributes, $content) {
+        ob_start();
+        require get_theme_file_path("/blocks/{$this->name}.php");
+        return ob_get_clean();
+    }
+  
+    function onInit() {
+        wp_register_script($this->name, get_stylesheet_directory_uri() . "/build/{$this->name}.js", array('wp-blocks', 'wp-editor'));
+        
+        if ($this->data) {
+            wp_localize_script($this->name, $this->name, $this->data);
+        }
+
+        $baseArgs = array(
+            'editor_script' => $this->name
+        );
+
+        if ($this->renderCallback) {
+            $baseArgs['render_callback'] = [$this, 'renderCallback'];
+        }
+
+        register_block_type("arborstone/{$this->name}", $baseArgs);
+    }
+}
+new JSXBlock('genericheading');
+new JSXBlock('genericbutton');

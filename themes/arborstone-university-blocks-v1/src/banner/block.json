@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "arborstone/banner",
+    "title": "Arborstone University Banner",
+    "supports": {
+        "align": ["full"]
+    },
+    "attributes": {
+        "align": {"type": "string", "default": "full"},
+        "testAttr": {"type": "string"},
+        "imgID": {"type": "number"},
+        "imgURL": {"type": "string"}
+    },
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}
