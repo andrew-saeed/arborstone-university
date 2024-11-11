@@ -1,3 +1,11 @@
 import './index.scss'
 
-console.log('test 10')
+import Swiper from 'swiper'
+
+window.onload = () => {
+  const swiper = new Swiper('.swiper', {
+    virtual: {
+      enabled: true,
+    },
+  })
+}

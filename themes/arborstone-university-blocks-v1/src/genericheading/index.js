@@ -1,24 +1,22 @@
 import { ToolbarGroup, ToolbarButton } from "@wordpress/components"
-import { RichText, BlockControls } from "@wordpress/block-editor"
 import { registerBlockType } from "@wordpress/blocks"
+import { RichText, BlockControls, useBlockProps } from "@wordpress/block-editor"
+import metadata from "./block.json"
 
-registerBlockType("arborstone/genericheading", {
-  title: "Generic Heading",
-  attributes: {
-    text: { type: "string" },
-    size: { type: "string", default: "large" }
-  },
+registerBlockType(metadata.name, {
   edit: EditComponent,
   save: SaveComponent
 })
 
 function EditComponent(props) {
+  const blockProps = useBlockProps()
+
   function handleTextChange(x) {
     props.setAttributes({ text: x })
   }
 
   return (
-    <>
+    <div {...blockProps}>
       <BlockControls>
         <ToolbarGroup>
           <ToolbarButton isPressed={props.attributes.size === "large"} onClick={() => props.setAttributes({ size: "large" })}>
@@ -33,7 +31,7 @@ function EditComponent(props) {
         </ToolbarGroup>
       </BlockControls>
       <RichText allowedFormats={["core/bold", "core/italic"]} tagName="h1" className={`headline headline--${props.attributes.size}`} value={props.attributes.text} onChange={handleTextChange} />
-    </>
+    </div>
   )
 }
 

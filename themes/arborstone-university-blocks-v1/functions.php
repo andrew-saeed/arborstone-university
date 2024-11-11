@@ -20,43 +20,8 @@ function theme_blocks() {
     register_block_type_from_metadata(__DIR__ . '/build/header');
     register_block_type_from_metadata(__DIR__ . '/build/banner');
     register_block_type_from_metadata(__DIR__ . '/build/footer');
+    register_block_type_from_metadata(__DIR__ . '/build/slider');
+    register_block_type_from_metadata(__DIR__ . '/build/slide');
+    register_block_type_from_metadata(__DIR__ . '/build/genericheading');
+    register_block_type_from_metadata(__DIR__ . '/build/genericbutton');
 }
-
-class JSXBlock {
-    private $name;
-    private $data;
-    private $renderCallback;
-
-    function __construct($name, $renderCallback = null, $data = null) {
-        $this->name = $name;
-        $this->data = $data;
-        $this->renderCallback = $renderCallback;
-        add_action('init', [$this, 'onInit']);
-    }
-  
-    function renderCallback($attributes, $content) {
-        ob_start();
-        require get_theme_file_path("/blocks/{$this->name}.php");
-        return ob_get_clean();
-    }
-  
-    function onInit() {
-        wp_register_script($this->name, get_stylesheet_directory_uri() . "/build/{$this->name}.js", array('wp-blocks', 'wp-editor'));
-        
-        if ($this->data) {
-            wp_localize_script($this->name, $this->name, $this->data);
-        }
-
-        $baseArgs = array(
-            'editor_script' => $this->name
-        );
-
-        if ($this->renderCallback) {
-            $baseArgs['render_callback'] = [$this, 'renderCallback'];
-        }
-
-        register_block_type("arborstone/{$this->name}", $baseArgs);
-    }
-}
-new JSXBlock('genericheading');
-new JSXBlock('genericbutton');
