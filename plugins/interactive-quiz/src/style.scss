@@ -1,0 +1,141 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.quiz {
+    position: relative;
+    background-color: white;
+    text-transform: capitalize;
+    padding: 2rem 1rem;
+    border: 0.0625rem solid black;
+    border-radius: 0.3125rem;
+    box-shadow: 0.125rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.3);
+
+    p {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 3.25rem;
+
+        &.standout {
+            position: relative;
+            z-index: 20;
+            color: white;
+        }
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-around;
+        flex-direction: column;
+
+        li {
+            width: 100%;
+            background-color: wheat;
+            padding: 1rem;
+            border-radius: 0.3125rem;
+            border: 0.0625rem solid black;
+
+            &:not(.standout):hover {
+                border: 0.0625rem solid var(--black-dark);
+                cursor: pointer;
+            }
+
+            &.standout {
+                position: relative;
+                z-index: 20;
+            }
+        }
+
+        @media screen and (min-width: 768px){
+            flex-direction: row;
+        }
+    }
+
+    .feedback {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 30;
+        font-size: 2rem;
+        color: white;
+        font-weight: 900;
+        text-transform: capitalize;
+        text-shadow: 0.0625rem 0.0625rem 0.0625rem rgba(0, 0, 0, 0.22);
+        overflow: hidden;
+
+        .box {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &.pending {
+            visibility: hidden;
+        }
+
+        &.correct {
+            visibility: visible;
+            
+            .box {
+                background-color: rgba(97, 192, 107, 0.9);
+                animation: show-feedback 2s forwards;
+            }
+        }
+
+        &.wrong {
+            visibility: visible;
+            
+            .box {
+                background-color: rgba(255, 94, 50, 0.9);
+                animation: show-feedback 2s both;
+            }
+        }
+    }
+
+    .feedback-mask {
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.3s linear;
+
+        &.standout {
+            visibility: visible;
+            z-index: 10;
+            opacity: 1;
+        }
+    }
+}
+
+@keyframes show-feedback {
+    0% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+    25% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    75% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}

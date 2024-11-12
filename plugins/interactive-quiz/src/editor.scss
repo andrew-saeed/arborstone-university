@@ -1,0 +1,72 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+ .quize-edit-block {
+    background-color: #d6d6d6;
+    padding: 10px;
+    border: 1px solid #f1f1f1;
+    border-radius: 5px;
+
+    button {
+        font-size: 16px!important;
+        color: yellow;
+        font-weight: bold;
+
+        &:hover {
+            color: red;
+        }
+    }
+
+    p {
+        margin-bottom: 2px!important;
+    }
+
+    ul {
+        list-style: none;
+        margin: 2px 0 0 0!important;
+        padding: 0!important;
+
+        li {
+            margin-bottom: 12px;
+        }
+    }
+
+    .components-base-control {
+
+        input {
+            font-size: 16px!important;
+        }
+
+        label {
+            text-transform: capitalize;
+        }
+
+        &.question label {
+            font-size: 20px!important;
+        }
+
+        &.answer label {
+            font-size: 16px!important;
+        }
+
+        .components-base-control__field {
+            margin-bottom: 0;
+        }
+    }
+
+    .components-flex {
+        align-items: flex-end!important;
+    }
+
+    .mark-as-correct {
+        color: blue;
+        cursor: pointer;
+
+        &:hover {
+            color: yellow;
+        }
+    }
+}
