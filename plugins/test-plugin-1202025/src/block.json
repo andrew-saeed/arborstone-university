@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "create-block/test-plugin-1202025s",
+	"version": "0.1.0",
+	"title": "Test Plugin 1202025",
+	"category": "widgets",
+	"icon": "media-interactive",
+	"description": "An interactive block with the Interactivity API.",
+	"example": {},
+	"supports": {
+		"interactivity": true
+	},
+	"textdomain": "test-plugin-1202025",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js",
+	"attributes": {
+	  "question": {"type": "string", "default": ""},
+	  "answers": {"type": "array", "default": [""]},
+	  "correctAnswer": {"type": "number", "default": null},
+	  "bgColor": {"type": "string", "default": "#EBEBEB"}
+	}
+}
