@@ -1,2 +1,2 @@
-# Workpress
-Hey! I'm learning Workpress ✨
+# Wordpress
+Hey! I'm learning Wordpress ✨
